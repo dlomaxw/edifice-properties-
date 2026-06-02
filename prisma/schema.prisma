@@ -1,0 +1,101 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         String   @default("admin") // "super_admin", "admin", "sales", "seo"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Property {
+  id               String   @id // e.g. "horizon-residency"
+  name             String
+  slug             String   @unique
+  location         String
+  description      String
+  fullDescription  String
+  startingPrice    Float
+  currency         String   @default("USD") // "USD" or "UGX"
+  status           String   @default("Active") // "Available", "Limited", "Sold out", "Under construction"
+  type             String   @default("Apartment") // "Apartment", "Penthouse", etc.
+  bedrooms         String   // e.g. "1BHK, 2BHK, 3BHK"
+  bathrooms        String   // e.g. "1-3"
+  sizeRange        String   // e.g. "600–1,700 sq.ft"
+  mainImage        String
+  mapUrl           String
+  youtubeUrl       String
+  featured         Boolean  @default(false)
+  seoTitle         String
+  seoDescription   String
+  orderIndex       Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  units            Unit[]
+}
+
+model Unit {
+  id             String   @id @default(uuid())
+  propertyId     String
+  property       Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  name           String   // e.g. "Horizon 1BHK"
+  price          Float
+  size           String   // e.g. "600 sq.ft" or "90 sqm"
+  bedrooms       Int
+  bathrooms      Int
+  status         String   @default("Available") // "Available", "Limited", "Sold out"
+  description    String
+  floorPlanImage String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Enquiry {
+  id                  String   @id @default(uuid())
+  firstName           String
+  lastName            String
+  phone               String
+  email               String
+  preferredProperty   String
+  preferredUnitType   String
+  budgetRange         String
+  buyerType           String   // "Home buyer", "Investor", "Diaspora buyer", "Corporate buyer"
+  message             String
+  status              String   @default("New") // "New", "Contacted", "Site Visit Booked", "Negotiation", "Reserved", "Closed", "Lost"
+  assignedSalesperson String   @default("Unassigned")
+  notes               String   @default("")
+  pageSource          String   @default("unknown")
+  deviceType          String   @default("unknown")
+  dateCreated         DateTime @default(now())
+}
+
+model Blog {
+  id             String   @id @default(uuid())
+  title          String
+  slug           String   @unique
+  featuredImage  String
+  content        String
+  category       String   // "Property updates", "Construction updates", "Investment advice", etc.
+  author         String
+  seoTitle       String
+  seoDescription String
+  tags           String   // Comma separated tags
+  dateCreated    DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Setting {
+  id          String  @id @default(uuid())
+  key         String  @unique
+  value       String
+  description String?
+}

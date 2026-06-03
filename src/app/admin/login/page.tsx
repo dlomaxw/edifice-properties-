@@ -18,7 +18,10 @@ export default function AdminLoginPage() {
       try {
         const res = await fetch('/api/auth/session');
         if (res.ok) {
-          router.push('/admin');
+          const data = await res.json();
+          if (data.authenticated) {
+            router.push('/admin');
+          }
         }
       } catch (err) {
         console.error(err);

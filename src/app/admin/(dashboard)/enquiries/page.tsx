@@ -74,7 +74,9 @@ export default function AdminEnquiriesPage() {
         const sessionRes = await fetch('/api/auth/session');
         if (sessionRes.ok) {
           const sessionData = await sessionRes.json();
-          setCurrentUser(sessionData?.user);
+          if (sessionData.authenticated) {
+            setCurrentUser(sessionData.user);
+          }
         }
       } catch (err) {
         console.error('Failed to load session details:', err);

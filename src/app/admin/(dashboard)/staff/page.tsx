@@ -51,7 +51,9 @@ export default function AdminStaffPage() {
         const sessionRes = await fetch('/api/auth/session');
         if (sessionRes.ok) {
           const sessionData = await sessionRes.json();
-          setCurrentUser(sessionData?.user);
+          if (sessionData.authenticated) {
+            setCurrentUser(sessionData.user);
+          }
         }
 
         const staffRes = await fetch('/api/staff');

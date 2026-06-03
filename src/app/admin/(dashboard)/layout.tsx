@@ -40,11 +40,15 @@ export default function AdminDashboardLayout({
           router.push('/admin/login');
         } else {
           const data = await res.json();
-          if (data?.user?.name) {
-            setAdminName(data.user.name);
-          }
-          if (data?.user?.role) {
-            setUserRole(data.user.role);
+          if (!data || !data.authenticated) {
+            router.push('/admin/login');
+          } else {
+            if (data?.user?.name) {
+              setAdminName(data.user.name);
+            }
+            if (data?.user?.role) {
+              setUserRole(data.user.role);
+            }
           }
         }
       } catch (err) {

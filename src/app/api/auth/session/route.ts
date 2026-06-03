@@ -8,13 +8,13 @@ export async function GET() {
     const sessionCookie = cookieStore.get('edifice_session');
 
     if (!sessionCookie) {
-      return NextResponse.json({ authenticated: false }, { status: 401 });
+      return NextResponse.json({ authenticated: false }, { status: 200 });
     }
 
     const payload = verifyJWT(sessionCookie.value);
 
     if (!payload) {
-      return NextResponse.json({ authenticated: false }, { status: 401 });
+      return NextResponse.json({ authenticated: false }, { status: 200 });
     }
 
     return NextResponse.json({ authenticated: true, user: payload }, { status: 200 });

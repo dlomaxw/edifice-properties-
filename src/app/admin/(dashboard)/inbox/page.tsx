@@ -281,7 +281,7 @@ export default function AdminInboxPage() {
               </button>
 
               <a
-                href="https://webmail.edificepropertiesug.com"
+                href="https://privateemail.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold tracking-wide text-[#dfc28c] hover:bg-white/5 hover:text-white transition-all"

@@ -10,19 +10,27 @@ export const metadata = {
   description: 'Reach out to Edifice Properties Uganda. Visit our office at Plot 8 Kanjokya Street in Kololo, Kampala, or contact our sales consultants directly.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ContactPage() {
   const properties = await db.property.findMany({
     select: { id: true, name: true },
     orderBy: { orderIndex: 'asc' },
   });
 
+  const settingsDb = await db.setting.findMany();
+  const settings = settingsDb.reduce((acc: any, curr) => {
+    acc[curr.key] = curr.value;
+    return acc;
+  }, {});
+
   const phones = [
-    { label: 'Primary Desk', value: '+256 786 000 112', href: 'tel:+256786000112' },
-    { label: 'Sales Consultant', value: '+256 763 700 206', href: 'tel:+256763700206' },
-    { label: 'Offices desk', value: '+256 766 759 416', href: 'tel:+256766759416' },
-    { label: 'Lead Specialist', value: '+256 770 833 189', href: 'tel:+256770833189' },
-    { label: 'Support Desk', value: '+256 709 269 168', href: 'tel:+256709269168' },
-  ];
+    { label: 'Primary Desk', value: settings.phone_primary || '+256 786 000 112', href: `tel:${(settings.phone_primary || '+256786000112').replace(/\s+/g, '')}` },
+    { label: 'Sales Consultant', value: settings.phone_alt1 || '+256 763 700 206', href: `tel:${(settings.phone_alt1 || '+256763700206').replace(/\s+/g, '')}` },
+    { label: 'Offices desk', value: settings.phone_alt2 || '+256 766 759 416', href: `tel:${(settings.phone_alt2 || '+256766759416').replace(/\s+/g, '')}` },
+    { label: 'Lead Specialist', value: settings.phone_alt4 || '+256 770 833 189', href: `tel:${(settings.phone_alt4 || '+256770833189').replace(/\s+/g, '')}` },
+    { label: 'Support Desk', value: settings.phone_alt3 || '+256 709 269 168', href: `tel:${(settings.phone_alt3 || '+256709269168').replace(/\s+/g, '')}` },
+  ].filter(p => p.value);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -71,10 +79,10 @@ export default async function ContactPage() {
                   Edifice Properties Limited
                 </p>
                 <p className="text-zinc-500 leading-relaxed font-medium">
-                  Plot 8, Kanjokya Street, (Beside The Aleph Restaurant and Africana Tours & Travels Office), Kololo, Kampala, Uganda.
+                  {settings.office_address || 'Plot 8, Kanjokya Street, (Beside The Aleph Restaurant and Africana Tours & Travels Office), Kololo, Kampala, Uganda.'}
                 </p>
                 <p className="text-zinc-400 mt-1">
-                  P.O. Box 108048 Kampala Nakawa.
+                  {settings.po_box || 'P.O. Box 108048 Kampala Nakawa.'}
                 </p>
               </div>
             </div>
@@ -104,8 +112,8 @@ export default async function ContactPage() {
               </div>
               <div className="flex flex-col text-xs">
                 <span className="font-semibold text-[#0a192f] text-sm">Email Inquiry</span>
-                <a href="mailto:edificepropertiesltd@gmail.com" className="text-zinc-500 hover:text-[#dfc28c] font-medium transition-colors mt-1 break-all">
-                  edificepropertiesltd@gmail.com
+                <a href={`mailto:${settings.contact_email || 'edificepropertiesltd@gmail.com'}`} className="text-zinc-500 hover:text-[#dfc28c] font-medium transition-colors mt-1 break-all">
+                  {settings.contact_email || 'edificepropertiesltd@gmail.com'}
                 </a>
               </div>
             </div>
@@ -117,9 +125,7 @@ export default async function ContactPage() {
               </div>
               <div className="flex flex-col text-xs text-zinc-500">
                 <span className="font-semibold text-[#0a192f] text-sm">Office Hours</span>
-                <span className="mt-1">Monday – Friday: 8:00 AM – 5:00 PM</span>
-                <span>Saturday: 9:00 AM – 1:00 PM</span>
-                <span>Sunday & Public Holidays: Closed (Site visits by appointment only)</span>
+                <span className="mt-1 whitespace-pre-line">{settings.business_hours || "Monday – Friday: 8:00 AM – 5:00 PM\nSaturday: 9:00 AM – 1:00 PM\nSunday & Public Holidays: Closed (Site visits by appointment only)"}</span>
               </div>
             </div>
           </div>
@@ -134,7 +140,7 @@ export default async function ContactPage() {
       {/* Full Width Google Maps Embed */}
       <section className="h-[500px] w-full relative border-t border-black/5">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.742880345094!2d32.59733471475396!3d0.33870809975306606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb0e35dc8f5d%3A0x7d0fa5a40bf5b9f7!2sKanjokya%20St%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000000!5m2!1sen!2sug"
+          src={settings.map_iframe_url || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.742880345094!2d32.59733471475396!3d0.33870809975306606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb0e35dc8f5d%3A0x7d0fa5a40bf5b9f7!2sKanjokya%20St%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000000!5m2!1sen!2sug"}
           className="absolute inset-0 w-full h-full border-0 grayscale filter contrast-125"
           allowFullScreen
           loading="lazy"

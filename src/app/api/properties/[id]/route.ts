@@ -20,7 +20,7 @@ export async function GET(
       where: {
         OR: [{ id }, { slug: id }],
       },
-      include: { units: true },
+      include: { units: true, images: { orderBy: { createdAt: 'asc' } } },
     });
 
     if (!property) {
@@ -69,6 +69,7 @@ export async function PUT(
       seoTitle,
       seoDescription,
       orderIndex,
+      images,
     } = body;
 
     const currentProperty = await db.property.findUnique({
@@ -77,6 +78,22 @@ export async function PUT(
 
     if (!currentProperty) {
       return NextResponse.json({ detail: 'Property not found' }, { status: 404 });
+    }
+
+    // Sync gallery images if provided
+    if (images !== undefined && Array.isArray(images)) {
+      await db.$transaction([
+        db.propertyImage.deleteMany({ where: { propertyId: id } }),
+        db.propertyImage.createMany({
+          data: images.map((img: any) => ({
+            propertyId: id,
+            url: img.url,
+            category: img.category,
+            label: img.label,
+            description: img.description || '',
+          }))
+        })
+      ]);
     }
 
     const updatedProperty = await db.property.update({
@@ -104,6 +121,7 @@ export async function PUT(
           seoDescription !== undefined ? seoDescription : currentProperty.seoDescription,
         orderIndex: orderIndex !== undefined ? parseInt(orderIndex) : currentProperty.orderIndex,
       },
+      include: { units: true, images: true }
     });
 
     return NextResponse.json({ success: true, data: updatedProperty });
@@ -149,4 +167,12 @@ export async function DELETE(
       { status: 500 }
     );
   }
+}
+
+// PATCH: Wrapper forwarding to PUT
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  return PUT(request, { params });
 }

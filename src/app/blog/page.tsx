@@ -11,7 +11,7 @@ export const metadata = {
   description: 'Stay updated with construction progress, real estate investment advice, and homeownership tips in Kampala, Uganda.',
 };
 
-export const revalidate = 60; // Refresh blogs every minute
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
   const blogs = await db.blog.findMany({

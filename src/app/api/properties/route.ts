@@ -14,7 +14,7 @@ export async function GET() {
   try {
     const properties = await db.property.findMany({
       orderBy: { orderIndex: 'asc' },
-      include: { units: true }
+      include: { units: true, images: { orderBy: { createdAt: 'asc' } } }
     });
 
     return NextResponse.json({ success: true, data: properties });
@@ -57,6 +57,7 @@ export async function POST(request: Request) {
       seoTitle,
       seoDescription,
       orderIndex,
+      images,
     } = body;
 
     if (!id || !name || !slug) {
@@ -97,7 +98,16 @@ export async function POST(request: Request) {
         seoTitle: seoTitle || name,
         seoDescription: seoDescription || description || '',
         orderIndex: parseInt(orderIndex) || 0,
+        images: images && Array.isArray(images) ? {
+          create: images.map((img: any) => ({
+            url: img.url,
+            category: img.category,
+            label: img.label,
+            description: img.description || '',
+          }))
+        } : undefined,
       },
+      include: { units: true, images: true }
     });
 
     return NextResponse.json({ success: true, data: property }, { status: 201 });

@@ -25,6 +25,40 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
+  const [properties, setProperties] = useState<PropertyItem[]>(propertiesList);
+  const [settings, setSettings] = useState<any>({});
+
+  // Fetch properties and settings dynamically
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [propsRes, settingsRes] = await Promise.all([
+          fetch('/api/properties'),
+          fetch('/api/settings')
+        ]);
+        if (propsRes.ok) {
+          const propsJson = await propsRes.json();
+          if (propsJson.success && propsJson.data) {
+            const mapped = propsJson.data.map((p: any) => ({
+              name: p.name,
+              href: `/properties/${p.slug}`,
+              image: p.mainImage
+            }));
+            setProperties(mapped);
+          }
+        }
+        if (settingsRes.ok) {
+          const settingsJson = await settingsRes.json();
+          if (settingsJson.success && settingsJson.data) {
+            setSettings(settingsJson.data);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching navbar data:', err);
+      }
+    }
+    fetchData();
+  }, []);
 
   // Scroll handler
   useEffect(() => {
@@ -67,7 +101,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="relative w-48 h-14 md:w-56 md:h-16 transition-all duration-300">
               <img 
-                src="/assets/images/edifice-logo.svg" 
+                src={settings.site_logo_url || "/assets/images/edifice-logo.svg"} 
                 alt="Edifice Properties Logo" 
                 className="w-full h-full object-contain filter brightness-110" 
               />
@@ -124,7 +158,7 @@ export default function Navbar() {
 
                     {/* Properties Grid */}
                     <div className="grid grid-cols-5 gap-4">
-                      {propertiesList.map((prop) => (
+                      {properties.map((prop) => (
                         <Link
                           key={prop.href}
                           href={prop.href}
@@ -167,7 +201,7 @@ export default function Navbar() {
           {/* Desktop Right CTAs */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="https://wa.me/256786000112"
+              href={`https://wa.me/${settings.whatsapp_number || '256786000112'}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium text-gold-500 hover:text-white transition-colors"
@@ -226,7 +260,7 @@ export default function Navbar() {
                 >
                   All Developments
                 </Link>
-                {propertiesList.map((prop) => (
+                {properties.map((prop) => (
                   <Link
                     key={prop.href}
                     href={prop.href}
@@ -260,7 +294,7 @@ export default function Navbar() {
             {/* Mobile Drawer CTAs */}
             <div className="flex flex-col gap-3 pt-6 border-t border-white/10">
               <a
-                href="tel:+256786000112"
+                href={`tel:${(settings.phone_primary || '+256786000112').replace(/\s+/g, '')}`}
                 className="w-full py-3 flex items-center justify-center gap-2 border border-white/10 rounded-full text-white font-medium hover:bg-white/5 transition-colors"
               >
                 <Phone size={18} />

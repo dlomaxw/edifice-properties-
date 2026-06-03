@@ -1,6 +1,7 @@
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 generator client {
@@ -8,13 +9,19 @@ generator client {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
-  name         String?
-  passwordHash String
-  role         String   @default("admin") // "super_admin", "admin", "sales", "seo"
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String   @id @default(uuid())
+  email         String   @unique
+  name          String?
+  passwordHash  String
+  role          String   @default("admin") // "super_admin", "admin", "sales", "seo", "ceo", "accounting", "marketing", "manager"
+  emailHost     String?
+  emailPort     Int?     @default(993)
+  emailUsername String?
+  emailPassword String?
+  smtpHost      String?
+  smtpPort      Int?     @default(465)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Property {
@@ -41,6 +48,7 @@ model Property {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   units            Unit[]
+  images           PropertyImage[]
 }
 
 model Unit {
@@ -98,4 +106,16 @@ model Setting {
   key         String  @unique
   value       String
   description String?
+}
+
+model PropertyImage {
+  id          String   @id @default(uuid())
+  propertyId  String
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  url         String
+  category    String   // "exterior", "interior", "floorplan"
+  label       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

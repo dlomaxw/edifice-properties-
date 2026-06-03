@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, Users, Building2, BookOpen, Settings as SettingsIcon, 
-  LogOut, Menu, X, ArrowUpRight, User 
+  LogOut, Menu, X, ArrowUpRight, User, Layout, BarChart3, Mail, Key 
 } from 'lucide-react';
 
 export default function AdminDashboardLayout({
@@ -15,8 +15,21 @@ export default function AdminDashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [currentTab, setCurrentTab] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [adminName, setAdminName] = useState('Edifice Admin');
+  const [userRole, setUserRole] = useState<string>('super_admin');
+
+  // Track client-side search parameter changes without CSR bailout
+  useEffect(() => {
+    const handleUrlChange = () => {
+      if (typeof window !== 'undefined') {
+        const tab = new URLSearchParams(window.location.search).get('tab');
+        setCurrentTab(tab);
+      }
+    };
+    handleUrlChange();
+  }, [pathname]);
 
   // Verify session & fetch admin profile
   useEffect(() => {
@@ -30,6 +43,9 @@ export default function AdminDashboardLayout({
           if (data?.user?.name) {
             setAdminName(data.user.name);
           }
+          if (data?.user?.role) {
+            setUserRole(data.user.role);
+          }
         }
       } catch (err) {
         router.push('/admin/login');
@@ -40,11 +56,27 @@ export default function AdminDashboardLayout({
 
   const menuItems = [
     { name: 'Overview', href: '/admin', icon: LayoutDashboard },
-    { name: 'Leads & Enquiries', href: '/admin/enquiries', icon: Users },
-    { name: 'Properties & Units', href: '/admin/properties', icon: Building2 },
-    { name: 'Blog News', href: '/admin/blogs', icon: BookOpen },
-    { name: 'Global Settings', href: '/admin/settings', icon: SettingsIcon },
+    { name: 'Reports Dashboard', href: '/admin/reports', icon: BarChart3, roles: ['super_admin', 'ceo', 'manager'] },
+    { name: 'Leads & Enquiries', href: '/admin/enquiries', icon: Users, roles: ['super_admin', 'ceo', 'manager', 'sales'] },
+    { name: 'Properties & Units', href: '/admin/properties', icon: Building2, roles: ['super_admin', 'ceo', 'manager', 'accounting'] },
+    { name: 'Homepage Editor', href: '/admin/settings?tab=homepage', icon: Layout, roles: ['super_admin', 'ceo', 'manager', 'marketing'] },
+    { name: 'Blog News', href: '/admin/blogs', icon: BookOpen, roles: ['super_admin', 'ceo', 'manager', 'marketing'] },
+    { name: 'Staff Directory', href: '/admin/staff', icon: Key, roles: ['super_admin', 'ceo', 'manager'] },
+    { name: 'Private Inbox', href: '/admin/inbox', icon: Mail, roles: ['super_admin', 'ceo', 'manager', 'sales', 'marketing', 'accounting'] },
+    { name: 'Global Settings', href: '/admin/settings?tab=branding', icon: SettingsIcon, roles: ['super_admin', 'ceo', 'manager'] },
   ];
+
+  const checkActive = (href: string) => {
+    const [itemPath, itemQueryString] = href.split('?');
+    if (itemQueryString) {
+      const itemTab = new URLSearchParams(itemQueryString).get('tab');
+      return pathname === itemPath && currentTab === itemTab;
+    }
+    if (itemPath === '/admin/settings') {
+      return pathname === itemPath && (!currentTab || currentTab === 'branding');
+    }
+    return pathname === href;
+  };
 
   const handleLogout = async () => {
     if (confirm('Are you sure you want to log out?')) {
@@ -57,6 +89,18 @@ export default function AdminDashboardLayout({
       } catch (err) {
         console.error('Logout failed', err);
       }
+    }
+  };
+
+  const getRoleLabel = (r: string) => {
+    switch (r) {
+      case 'super_admin': return 'Super Admin';
+      case 'ceo': return 'CEO / Executive';
+      case 'manager': return 'Manager';
+      case 'sales': return 'Sales Team';
+      case 'accounting': return 'Accounting Desk';
+      case 'marketing': return 'Marketing & SEO';
+      default: return r.replace('_', ' ');
     }
   };
 
@@ -77,9 +121,11 @@ export default function AdminDashboardLayout({
 
           {/* Links */}
           <nav className="flex-1 px-4 py-6 space-y-1">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
+            {menuItems
+              .filter((item) => !item.roles || item.roles.includes(userRole))
+              .map((item) => {
+                const Icon = item.icon;
+              const isActive = checkActive(item.href);
               return (
                 <Link
                   key={item.href}
@@ -106,7 +152,7 @@ export default function AdminDashboardLayout({
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-bold truncate">{adminName}</span>
-              <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider">Super Admin</span>
+              <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider">{getRoleLabel(userRole)}</span>
             </div>
           </div>
 
@@ -138,9 +184,11 @@ export default function AdminDashboardLayout({
               </div>
 
               <nav className="px-4 py-6 space-y-1">
-                {menuItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = pathname === item.href;
+                {menuItems
+                  .filter((item) => !item.roles || item.roles.includes(userRole))
+                  .map((item) => {
+                    const Icon = item.icon;
+                  const isActive = checkActive(item.href);
                   return (
                     <Link
                       key={item.href}
@@ -167,7 +215,7 @@ export default function AdminDashboardLayout({
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="text-xs font-bold truncate">{adminName}</span>
-                  <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider">Super Admin</span>
+                  <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider">{getRoleLabel(userRole)}</span>
                 </div>
               </div>
 

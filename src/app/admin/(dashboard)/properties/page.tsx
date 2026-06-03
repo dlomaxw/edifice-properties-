@@ -5,6 +5,7 @@ import {
   Building2, Search, Plus, Edit2, Trash2, ChevronDown, ChevronUp, 
   Eye, Save, X, DollarSign, MapPin, Layers, Layout, Key, Loader2 
 } from 'lucide-react';
+import ImageUploader from '@/components/admin/ImageUploader';
 
 interface Unit {
   id: string;
@@ -17,6 +18,14 @@ interface Unit {
   status: string;
   description: string;
   floorPlanImage: string;
+}
+
+interface PropertyImageState {
+  id?: string;
+  url: string;
+  category: 'exterior' | 'interior' | 'floorplan';
+  label: string;
+  description: string;
 }
 
 interface Property {
@@ -40,12 +49,14 @@ interface Property {
   seoTitle: string;
   seoDescription: string;
   units: Unit[];
+  images: PropertyImageState[];
 }
 
 export default function AdminPropertiesPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentUser, setCurrentUser] = useState<any>(null);
   
   // Collapsed sections
   const [expandedPropId, setExpandedPropId] = useState<string | null>(null);
@@ -77,6 +88,7 @@ export default function AdminPropertiesPage() {
   const [propSeoTitle, setPropSeoTitle] = useState('');
   const [propSeoDesc, setPropSeoDesc] = useState('');
   const [submittingProp, setSubmittingProp] = useState(false);
+  const [propImages, setPropImages] = useState<PropertyImageState[]>([]);
 
   // Unit Form State
   const [unitName, setUnitName] = useState('');
@@ -106,6 +118,18 @@ export default function AdminPropertiesPage() {
   };
 
   useEffect(() => {
+    async function loadSession() {
+      try {
+        const sessionRes = await fetch('/api/auth/session');
+        if (sessionRes.ok) {
+          const sessionData = await sessionRes.json();
+          setCurrentUser(sessionData?.user);
+        }
+      } catch (err) {
+        console.error('Failed to load session details:', err);
+      }
+    }
+    loadSession();
     fetchProperties();
   }, []);
 
@@ -135,6 +159,7 @@ export default function AdminPropertiesPage() {
       setPropFeatured(prop.featured);
       setPropSeoTitle(prop.seoTitle || '');
       setPropSeoDesc(prop.seoDescription || '');
+      setPropImages(prop.images || []);
     } else {
       setPropId('');
       setPropName('');
@@ -155,6 +180,7 @@ export default function AdminPropertiesPage() {
       setPropFeatured(false);
       setPropSeoTitle('');
       setPropSeoDesc('');
+      setPropImages([]);
     }
     setActiveTab('property_form');
   };
@@ -183,6 +209,7 @@ export default function AdminPropertiesPage() {
       featured: propFeatured,
       seoTitle: propSeoTitle || `${propName} | Edifice Properties`,
       seoDescription: propSeoDesc || propDesc,
+      images: propImages,
     };
 
     try {
@@ -334,6 +361,28 @@ export default function AdminPropertiesPage() {
       default: return 'bg-zinc-800 text-zinc-400 border border-zinc-700';
     }
   };
+
+  const ALLOWED_ROLES = ['super_admin', 'ceo', 'manager', 'accounting'];
+
+  if (!loading && currentUser && !ALLOWED_ROLES.includes(currentUser.role)) {
+    return (
+      <div className="bg-zinc-900 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center gap-4 text-center max-w-md mx-auto mt-12 shadow-md">
+        <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+          <Building2 size={24} />
+        </div>
+        <h2 className="text-base font-heading font-bold text-white uppercase tracking-wider">Access Restrict Guard</h2>
+        <p className="text-xs text-zinc-400 leading-relaxed">
+          Your active staff role of <span className="text-[#dfc28c] font-bold">{(currentUser.role || '').toUpperCase()}</span> does not possess permission to access the Properties & Units Directory.
+        </p>
+        <a 
+          href="/admin" 
+          className="mt-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-zinc-700 text-xs font-bold rounded-xl uppercase tracking-wider transition-colors"
+        >
+          Return to Overview
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-8">
@@ -668,13 +717,10 @@ export default function AdminPropertiesPage() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Main Cover Image Path</label>
-              <input
-                type="text"
-                required
+              <ImageUploader
                 value={propMainImage}
-                onChange={(e) => setPropMainImage(e.target.value)}
+                onChange={setPropMainImage}
                 placeholder="/assets/images/horizon.png"
-                className="w-full bg-black/40 border border-white/5 px-4 py-2.5 rounded-xl text-xs outline-none focus:border-[#dfc28c]"
               />
             </div>
 
@@ -761,6 +807,117 @@ export default function AdminPropertiesPage() {
                 rows={5}
                 className="w-full bg-black/40 border border-white/5 px-4 py-2.5 rounded-xl text-xs outline-none focus:border-[#dfc28c] resize-none"
               />
+            </div>
+
+            {/* Gallery Images Editor Section */}
+            <div className="flex flex-col gap-4 md:col-span-2 border-t border-white/5 pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-[#dfc28c]">Gallery Images (Interactive Walkthrough)</h4>
+                  <p className="text-[10px] text-zinc-500 mt-0.5">Add, edit, or remove images that display in the property detail scroll showcase.</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPropImages([
+                      ...propImages,
+                      { url: '/assets/images/horizon.png', category: 'interior', label: 'New Image Label', description: 'New Image Description' }
+                    ]);
+                  }}
+                  className="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-[#dfc28c] text-[10px] font-bold uppercase tracking-wider rounded-lg border border-white/5 flex items-center gap-1 transition-all"
+                >
+                  <Plus size={12} />
+                  <span>Add Gallery Image</span>
+                </button>
+              </div>
+
+              {propImages.length === 0 ? (
+                <div className="bg-black/25 border border-white/5 p-8 text-center text-xs text-zinc-500 uppercase tracking-widest font-bold rounded-2xl">
+                  No gallery images added yet. Click the button above to add some.
+                </div>
+              ) : (
+                <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-2">
+                  {propImages.map((img, idx) => (
+                    <div key={idx} className="bg-black/30 border border-white/5 rounded-2xl p-4 flex flex-col gap-4 relative group">
+                      <div className="absolute top-4 right-4 flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPropImages(propImages.filter((_, i) => i !== idx));
+                          }}
+                          className="p-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-lg transition-colors"
+                          title="Remove Image"
+                        >
+                          <Trash2 size={12} />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="flex flex-col gap-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-zinc-500">Image URL / Path</label>
+                          <ImageUploader
+                            value={img.url}
+                            onChange={(url) => {
+                              const newImgs = [...propImages];
+                              newImgs[idx].url = url;
+                              setPropImages(newImgs);
+                            }}
+                            placeholder="/assets/images/1.webp"
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-zinc-500">Category</label>
+                          <select
+                            value={img.category}
+                            onChange={(e) => {
+                              const newImgs = [...propImages];
+                              newImgs[idx].category = e.target.value as any;
+                              setPropImages(newImgs);
+                            }}
+                            className="w-full bg-black/40 border border-white/5 px-3 py-1.5 rounded-lg text-xs outline-none focus:border-[#dfc28c]"
+                          >
+                            <option value="exterior">Exterior</option>
+                            <option value="interior">Interior</option>
+                            <option value="floorplan">Floor Plan</option>
+                          </select>
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-zinc-500">Image Label / Title</label>
+                          <input
+                            type="text"
+                            required
+                            value={img.label}
+                            onChange={(e) => {
+                              const newImgs = [...propImages];
+                              newImgs[idx].label = e.target.value;
+                              setPropImages(newImgs);
+                            }}
+                            placeholder="Entrance Lobby Renders"
+                            className="w-full bg-black/40 border border-white/5 px-3 py-1.5 rounded-lg text-xs outline-none focus:border-[#dfc28c]"
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1 md:col-span-3">
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-zinc-500">Description / Specifications</label>
+                          <textarea
+                            value={img.description}
+                            onChange={(e) => {
+                              const newImgs = [...propImages];
+                              newImgs[idx].description = e.target.value;
+                              setPropImages(newImgs);
+                            }}
+                            placeholder="Detailed text showing building specifics, layouts..."
+                            rows={2}
+                            className="w-full bg-black/40 border border-white/5 px-3 py-1.5 rounded-lg text-xs outline-none focus:border-[#dfc28c] resize-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -881,13 +1038,10 @@ export default function AdminPropertiesPage() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Floor Plan Image Path</label>
-              <input
-                type="text"
-                required
+              <ImageUploader
                 value={unitFloorPlan}
-                onChange={(e) => setUnitFloorPlan(e.target.value)}
+                onChange={setUnitFloorPlan}
                 placeholder="/assets/images/1.webp"
-                className="w-full bg-black/40 border border-white/5 px-4 py-2.5 rounded-xl text-xs outline-none focus:border-[#dfc28c]"
               />
             </div>
 

@@ -40,111 +40,140 @@ const heroSlides = [
   },
 ];
 
-export default function HeroSlider() {
+interface HeroSliderProps {
+  properties?: any[];
+}
+
+export default function HeroSlider({ properties = [] }: HeroSliderProps) {
+  const featuredProperties = properties.filter((p) => p.featured);
+  
+  const slides = featuredProperties.length > 0
+    ? featuredProperties.map((p) => ({
+        image: p.mainImage,
+        title: p.description,
+        subtitle: p.name.toUpperCase(),
+        location: p.location,
+        price: `Starting from ${p.currency === 'USD' ? '$' : ''}${p.startingPrice.toLocaleString()}${p.currency !== 'USD' ? ' ' + p.currency : ''}`,
+        link: `/properties/${p.slug}`,
+      }))
+    : heroSlides;
+
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    if (slides.length <= 1) {
+      setCurrent(0);
+      return;
+    }
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % heroSlides.length);
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 6500);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden bg-[#020c1b]">
       {/* Background Slideshow with Cinematic Ken Burns Effect */}
       <AnimatePresence mode="popLayout">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0, scale: 1.0 }}
-          animate={{ opacity: 1, scale: 1.15 }}
-          exit={{ opacity: 0, scale: 1.18 }}
-          transition={{
-            opacity: { duration: 1.2, ease: "easeOut" },
-            scale: { duration: 7.0, ease: "easeOut" }
-          }}
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroSlides[current].image})` }}
-        >
-          {/* Deep Navy Architectural Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020c1b] via-[#0a192f]/50 to-[#020c1b]/70" />
-        </motion.div>
+        {slides[current] && (
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, scale: 1.0 }}
+            animate={{ opacity: 1, scale: 1.15 }}
+            exit={{ opacity: 0, scale: 1.18 }}
+            transition={{
+              opacity: { duration: 1.2, ease: "easeOut" },
+              scale: { duration: 7.0, ease: "easeOut" }
+            }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${slides[current].image})` }}
+          >
+            {/* Deep Navy Architectural Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020c1b] via-[#0a192f]/50 to-[#020c1b]/70" />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24">
-        <div className="max-w-4xl">
-          {/* Subtitle / Project Name */}
-          <div className="overflow-hidden mb-4">
-            <motion.span
-              key={`subtitle-${current}`}
-              initial={{ opacity: 0, y: 30 }}
+        {slides[current] && (
+          <div className="max-w-4xl">
+            {/* Subtitle / Project Name */}
+            <div className="overflow-hidden mb-4">
+              <motion.span
+                key={`subtitle-${current}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="text-xs md:text-sm font-bold tracking-[0.25em] text-gold-500 uppercase block"
+              >
+                {slides[current].subtitle} • {slides[current].location}
+              </motion.span>
+            </div>
+
+            {/* Headline */}
+            <div className="overflow-hidden mb-6">
+              <motion.h1
+                key={`title-${current}`}
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className={`font-heading text-white tracking-tight ${
+                  slides[current].title.length > 60
+                    ? 'text-sm md:text-lg lg:text-xl font-medium leading-relaxed max-w-2xl text-white/90'
+                    : 'text-2xl md:text-3xl lg:text-4xl font-bold leading-tight max-w-3xl'
+                }`}
+              >
+                {slides[current].title}
+              </motion.h1>
+            </div>
+
+            {/* Pricing Highlight */}
+            <div className="overflow-hidden mb-8">
+              <motion.p
+                key={`price-${current}`}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm md:text-base text-[#dfc28c] font-bold tracking-wider uppercase font-sans"
+              >
+                {slides[current].price}
+              </motion.p>
+            </div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs md:text-sm font-bold tracking-[0.25em] text-gold-500 uppercase block"
+              transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap gap-4"
             >
-              {heroSlides[current].subtitle} • {heroSlides[current].location}
-            </motion.span>
+              <Link
+                href={slides[current].link}
+                className="px-8 py-4 bg-gold-500 text-[#020c1b] rounded-full hover:bg-white transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200 shadow-lg"
+              >
+                <span>Explore Property</span>
+                <ChevronRight size={16} />
+              </Link>
+              <Link
+                href="/contact?visit=book"
+                className="px-8 py-4 border border-white/20 hover:border-white text-white rounded-full bg-white/5 backdrop-blur-sm transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200"
+              >
+                <Calendar size={16} className="text-gold-500" />
+                <span>Book Site Visit</span>
+              </Link>
+              <a
+                href="https://wa.me/256786000112"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border border-[#25d366]/30 hover:border-[#25d366] text-white rounded-full bg-[#25d366]/10 backdrop-blur-sm transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200"
+              >
+                <MessageSquare size={16} className="text-[#25d366]" />
+                <span>Talk to Sales</span>
+              </a>
+            </motion.div>
           </div>
-
-          {/* Headline */}
-          <div className="overflow-hidden mb-6">
-            <motion.h1
-              key={`title-${current}`}
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight leading-[1.1]"
-            >
-              {heroSlides[current].title}
-            </motion.h1>
-          </div>
-
-          {/* Pricing Highlight */}
-          <div className="overflow-hidden mb-10">
-            <motion.p
-              key={`price-${current}`}
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 0.8, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-white font-medium font-sans"
-            >
-              {heroSlides[current].price}
-            </motion.p>
-          </div>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap gap-4"
-          >
-            <Link
-              href={heroSlides[current].link}
-              className="px-8 py-4 bg-gold-500 text-[#020c1b] rounded-full hover:bg-white transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200 shadow-lg"
-            >
-              <span>Explore Property</span>
-              <ChevronRight size={16} />
-            </Link>
-            <Link
-              href="/contact?visit=book"
-              className="px-8 py-4 border border-white/20 hover:border-white text-white rounded-full bg-white/5 backdrop-blur-sm transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200"
-            >
-              <Calendar size={16} className="text-gold-500" />
-              <span>Book Site Visit</span>
-            </Link>
-            <a
-              href="https://wa.me/256786000112"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 border border-[#25d366]/30 hover:border-[#25d366] text-white rounded-full bg-[#25d366]/10 backdrop-blur-sm transition-all font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:scale-105 duration-200"
-            >
-              <MessageSquare size={16} className="text-[#25d366]" />
-              <span>Talk to Sales</span>
-            </a>
-          </motion.div>
-        </div>
+        )}
       </div>
 
       {/* Floating Counter / Highlight Overlay */}
@@ -167,7 +196,7 @@ export default function HeroSlider() {
 
       {/* Slide Indicators */}
       <div className="absolute left-6 bottom-24 lg:left-24 lg:bottom-16 flex gap-3">
-        {heroSlides.map((_, idx) => (
+        {slides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}

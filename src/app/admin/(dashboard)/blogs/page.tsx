@@ -6,6 +6,7 @@ import {
   Calendar, User, Tag, Loader2 
 } from 'lucide-react';
 import Link from 'next/link';
+import ImageUploader from '@/components/admin/ImageUploader';
 
 interface Blog {
   id: string;
@@ -356,13 +357,10 @@ export default function AdminBlogsPage() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Featured Image Path</label>
-              <input
-                type="text"
-                required
+              <ImageUploader
                 value={featuredImage}
-                onChange={(e) => setFeaturedImage(e.target.value)}
+                onChange={setFeaturedImage}
                 placeholder="/assets/images/horizon.png"
-                className="w-full bg-black/40 border border-white/5 px-4 py-2.5 rounded-xl text-xs outline-none focus:border-[#dfc28c]"
               />
             </div>
 

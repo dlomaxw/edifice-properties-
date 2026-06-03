@@ -11,7 +11,7 @@ export const metadata = {
     'Browse our signature residential portfolio in Kampala. Premium apartments for sale in Bugolobi, Naguru, Muyenga, and Kulambiro. Explore starting prices, amenities, and floor plans.',
 };
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 export default async function PropertiesPage() {
   const properties = await db.property.findMany({

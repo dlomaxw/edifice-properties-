@@ -29,6 +29,7 @@ export default function AdminEnquiriesPage() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentUser, setCurrentUser] = useState<any>(null);
   
   // Search and Filter states
   const [search, setSearch] = useState('');
@@ -68,6 +69,18 @@ export default function AdminEnquiriesPage() {
   };
 
   useEffect(() => {
+    async function loadSession() {
+      try {
+        const sessionRes = await fetch('/api/auth/session');
+        if (sessionRes.ok) {
+          const sessionData = await sessionRes.json();
+          setCurrentUser(sessionData?.user);
+        }
+      } catch (err) {
+        console.error('Failed to load session details:', err);
+      }
+    }
+    loadSession();
     fetchEnquiries();
   }, []);
 
@@ -195,6 +208,27 @@ export default function AdminEnquiriesPage() {
   });
 
   const statuses = ['New', 'Contacted', 'Site Visit Booked', 'Negotiation', 'Reserved', 'Closed', 'Lost'];
+  const ALLOWED_ROLES = ['super_admin', 'ceo', 'manager', 'sales'];
+
+  if (!loading && currentUser && !ALLOWED_ROLES.includes(currentUser.role)) {
+    return (
+      <div className="bg-zinc-900 border border-white/5 p-8 rounded-3xl flex flex-col items-center justify-center gap-4 text-center max-w-md mx-auto mt-12 shadow-md">
+        <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+          <Users size={24} />
+        </div>
+        <h2 className="text-base font-heading font-bold text-white uppercase tracking-wider">Access Restrict Guard</h2>
+        <p className="text-xs text-zinc-400 leading-relaxed">
+          Your active staff role of <span className="text-[#dfc28c] font-bold">{(currentUser.role || '').toUpperCase()}</span> does not possess permission to access the Leads & Enquiries Directory.
+        </p>
+        <a 
+          href="/admin" 
+          className="mt-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-zinc-700 text-xs font-bold rounded-xl uppercase tracking-wider transition-colors"
+        >
+          Return to Overview
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-8">

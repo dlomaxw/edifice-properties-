@@ -5,18 +5,20 @@ import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Eye, X, ChevronLeft, ChevronRight, Compass, ArrowDownCircle, Layers } from 'lucide-react';
 
-interface PropertyScrollGalleryProps {
-  propertyId: string;
-}
-
 interface ImageItem {
+  id?: string;
   url: string;
-  category: 'exterior' | 'interior' | 'floorplan';
+  category: string;
   label: string;
   description: string;
 }
 
-export default function PropertyScrollGallery({ propertyId }: PropertyScrollGalleryProps) {
+interface PropertyScrollGalleryProps {
+  propertyId: string;
+  images?: ImageItem[];
+}
+
+export default function PropertyScrollGallery({ propertyId, images }: PropertyScrollGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -339,7 +341,16 @@ export default function PropertyScrollGallery({ propertyId }: PropertyScrollGall
     }
   };
 
-  const items = getCategorizedImages(propertyId);
+  const dbItems = images && images.length > 0
+    ? images.map((img) => ({
+        url: img.url,
+        category: img.category as 'exterior' | 'interior' | 'floorplan',
+        label: img.label,
+        description: img.description
+      }))
+    : [];
+
+  const items = dbItems.length > 0 ? dbItems : getCategorizedImages(propertyId);
 
   // Scroll Tracking hooks
   const { scrollYProgress } = useScroll({

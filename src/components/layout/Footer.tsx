@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Send, MessageSquare } from 'lucide-react';
 
@@ -21,6 +22,38 @@ const quickLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [properties, setProperties] = useState<any[]>(propertyLinks);
+  const [settings, setSettings] = useState<any>({});
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [propsRes, settingsRes] = await Promise.all([
+          fetch('/api/properties'),
+          fetch('/api/settings')
+        ]);
+        if (propsRes.ok) {
+          const propsJson = await propsRes.json();
+          if (propsJson.success && propsJson.data) {
+            const mapped = propsJson.data.map((p: any) => ({
+              name: p.name,
+              href: `/properties/${p.slug}`
+            }));
+            setProperties(mapped);
+          }
+        }
+        if (settingsRes.ok) {
+          const settingsJson = await settingsRes.json();
+          if (settingsJson.success && settingsJson.data) {
+            setSettings(settingsJson.data);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching footer data:', err);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <footer className="bg-[#020c1b] text-white/75 pt-20 pb-8 border-t border-white/5">
@@ -38,7 +71,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://wa.me/256786000112"
+              href={`https://wa.me/${settings.whatsapp_number || '256786000112'}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:text-[#dfc28c] flex items-center justify-center transition-colors border border-white/10"
@@ -55,7 +88,7 @@ export default function Footer() {
             Our Developments
           </h3>
           <ul className="flex flex-col gap-3">
-            {propertyLinks.map((link) => (
+            {properties.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -97,24 +130,24 @@ export default function Footer() {
               <MapPin size={18} className="text-[#dfc28c] shrink-0 mt-0.5" />
               <span>
                 <strong>Edifice Properties Limited</strong><br />
-                Plot 8, Kanjokya Street, Kololo, Kampala, Uganda.<br />
-                P.O. Box 108048 Kampala Nakawa.
+                {settings.office_address || 'Plot 8, Kanjokya Street, Kololo, Kampala, Uganda.'}<br />
+                {settings.po_box || 'P.O. Box 108048 Kampala Nakawa.'}
               </span>
             </li>
             <li className="flex gap-3">
               <Phone size={18} className="text-[#dfc28c] shrink-0 mt-0.5" />
               <div className="flex flex-col">
-                <a href="tel:+256786000112" className="hover:text-white transition-colors">+256 786 000112</a>
-                <a href="tel:+256763700206" className="hover:text-white transition-colors">+256 763 700206</a>
+                <a href={`tel:${(settings.phone_primary || '+256786000112').replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{settings.phone_primary || '+256 786 000 112'}</a>
+                <a href={`tel:${(settings.phone_alt1 || '+256763700206').replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{settings.phone_alt1 || '+256 763 700 206'}</a>
               </div>
             </li>
             <li className="flex gap-3">
               <Mail size={18} className="text-[#dfc28c] shrink-0 mt-0.5" />
               <a
-                href="mailto:edificepropertiesltd@gmail.com"
+                href={`mailto:${settings.contact_email || 'edificepropertiesltd@gmail.com'}`}
                 className="hover:text-white transition-colors break-all"
               >
-                edificepropertiesltd@gmail.com
+                {settings.contact_email || 'edificepropertiesltd@gmail.com'}
               </a>
             </li>
           </ul>

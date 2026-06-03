@@ -31,11 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Generate static params for blogs
-export async function generateStaticParams() {
-  const posts = await db.blog.findMany({ select: { slug: true } });
-  return posts.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;

@@ -35,18 +35,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Generate static params for all properties
-export async function generateStaticParams() {
-  const properties = await db.property.findMany({ select: { slug: true } });
-  return properties.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function PropertyDetailPage({ params }: Props) {
   const { slug } = await params;
 
   const property = await db.property.findUnique({
     where: { slug },
-    include: { units: true },
+    include: { units: true, images: { orderBy: { createdAt: 'asc' } } },
   });
 
   if (!property) {
@@ -270,7 +266,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             />
 
             {/* Scroll-Linked Property Gallery */}
-            <PropertyScrollGallery propertyId={property.id} />
+            <PropertyScrollGallery propertyId={property.id} images={property.images} />
 
             {/* Video Modal Section */}
             {property.youtubeUrl && (

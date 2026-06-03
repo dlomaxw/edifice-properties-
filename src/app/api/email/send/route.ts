@@ -47,10 +47,11 @@ export async function POST(request: Request) {
     // Connect to actual SMTP and send
     const decryptedPassword = decrypt(user.emailPassword);
 
+    const smtpPort = user.smtpPort || 465;
     const transporter = nodemailer.createTransport({
       host: user.smtpHost,
-      port: user.smtpPort || 465,
-      secure: user.smtpPort === 465, // True for 465, false for 587/other
+      port: smtpPort,
+      secure: smtpPort === 465, // True for 465, false for 587/other
       auth: {
         user: user.emailUsername,
         pass: decryptedPassword,
@@ -83,6 +84,9 @@ export async function POST(request: Request) {
           auth: {
             user: user.emailUsername,
             pass: decryptedPassword,
+          },
+          tls: {
+            rejectUnauthorized: false
           },
           logger: false,
         });

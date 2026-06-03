@@ -158,6 +158,9 @@ export async function GET(request: Request) {
         user: user.emailUsername,
         pass: decryptedPassword,
       },
+      tls: {
+        rejectUnauthorized: false
+      },
       logger: false,
     });
 

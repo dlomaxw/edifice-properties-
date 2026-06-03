@@ -50,7 +50,7 @@ export default function AdminInboxPage() {
     
     setErrorMsg('');
     try {
-      const res = await fetch('/api/email/fetch');
+      const res = await fetch(`/api/email/fetch?folder=${activeFolder}`);
       const json = await res.json();
       
       if (!res.ok) {
@@ -74,7 +74,7 @@ export default function AdminInboxPage() {
 
   useEffect(() => {
     loadEmails();
-  }, []);
+  }, [activeFolder]);
 
   // Filter and search
   useEffect(() => {
@@ -255,11 +255,12 @@ export default function AdminInboxPage() {
               </button>
               
               <button
-                onClick={() => {
-                  setActiveFolder('sent');
-                  alert('Sent folder is synced dynamically via IMAP. Outbound emails sent via this dashboard are saved to your Sent folder on your mail provider.');
-                }}
-                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold tracking-wide text-zinc-400 hover:bg-white/2 hover:text-white transition-all`}
+                onClick={() => setActiveFolder('sent')}
+                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+                  activeFolder === 'sent'
+                    ? 'bg-white/5 text-[#dfc28c] font-bold'
+                    : 'text-zinc-400 hover:bg-white/2 hover:text-white'
+                }`}
               >
                 <div className="flex items-center gap-2.5">
                   <Send size={14} />
@@ -268,11 +269,12 @@ export default function AdminInboxPage() {
               </button>
 
               <button
-                onClick={() => {
-                  setActiveFolder('trash');
-                  alert('Trash messages folder placeholder.');
-                }}
-                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold tracking-wide text-zinc-400 hover:bg-white/2 hover:text-white transition-all`}
+                onClick={() => setActiveFolder('trash')}
+                className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+                  activeFolder === 'trash'
+                    ? 'bg-white/5 text-[#dfc28c] font-bold'
+                    : 'text-zinc-400 hover:bg-white/2 hover:text-white'
+                }`}
               >
                 <div className="flex items-center gap-2.5">
                   <Trash2 size={14} />

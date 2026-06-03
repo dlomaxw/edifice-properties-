@@ -95,7 +95,31 @@ function getMockEmails(role: string, email: string) {
   return commonMocks;
 }
 
-export async function GET() {
+function getMockSentEmails(role: string, email: string) {
+  const dateObj = new Date();
+  return [
+    {
+      uid: 201,
+      subject: 'Re: Inquiry regarding Horizon Residency 2BHK pricing',
+      from: `You <${email}>`,
+      fromAddress: email,
+      date: new Date(dateObj.getTime() - 30 * 60000).toISOString(),
+      body: `Hello Moses,\n\nThank you for reaching out. Yes, we have standard installment plans available for Horizon Residency starting from 10% booking hold. I have attached our latest price list and brochure.\n\nI would be happy to schedule a site tour for you next month when you visit Kampala.\n\nBest regards,\nEdifice Sales Team.`,
+      snippet: 'Thank you for reaching out. Yes, we have standard installment plans available for Horizon Residency...',
+    },
+    {
+      uid: 202,
+      subject: 'Scheduled Site Visit Booking Confirmation - Elite Palazzo Naguru',
+      from: `You <${email}>`,
+      fromAddress: email,
+      date: new Date(dateObj.getTime() - 2 * 3600000).toISOString(),
+      body: `Dear Amina,\n\nWe have scheduled your VIP site walk through for Elite Palazzo in Naguru next Tuesday at 11:00 AM. Our lead sales specialist will guide you and show you the foundation progress and penthouse site layouts.\n\nPlease let us know if this time fits your schedule.\n\nWarm regards,\nEdifice Sales Desk.`,
+      snippet: 'We have scheduled your VIP site walk through for Elite Palazzo in Naguru next Tuesday at 11:00 AM...',
+    }
+  ];
+}
+
+export async function GET(request: Request) {
   try {
     const admin = await checkAuth();
     if (!admin) {
@@ -110,12 +134,16 @@ export async function GET() {
       return NextResponse.json({ detail: 'User not found' }, { status: 404 });
     }
 
-    // If credentials are not fully set, return role-specific mock inbox
+    const { searchParams } = new URL(request.url);
+    const folderParam = searchParams.get('folder') || 'INBOX';
+    const isSentFolder = folderParam.toUpperCase() === 'SENT';
+
+    // If credentials are not fully set, return role-specific mock inbox/sent list
     if (!user.emailHost || !user.emailUsername || !user.emailPassword) {
       return NextResponse.json({ 
         success: true, 
         isMocked: true, 
-        data: getMockEmails(user.role, user.email) 
+        data: isSentFolder ? getMockSentEmails(user.role, user.email) : getMockEmails(user.role, user.email) 
       });
     }
 
@@ -135,11 +163,23 @@ export async function GET() {
 
     await client.connect();
     
-    // Check if INBOX exists and lock
-    const lock = await client.getMailboxLock('INBOX');
+    // Find target folder path dynamically on the IMAP server
+    let targetFolder = 'INBOX';
+    if (isSentFolder) {
+      const mailboxes = await client.list();
+      // Try to find folder matching "Sent", "Sent Messages", "Sent Items" etc.
+      const sentBox = mailboxes.find(m => 
+        m.path.toUpperCase() === 'SENT' || 
+        m.path.toUpperCase().includes('SENT') ||
+        m.name.toUpperCase().includes('SENT')
+      );
+      targetFolder = sentBox ? sentBox.path : 'INBOX';
+    }
+
+    const lock = await client.getMailboxLock(targetFolder);
     
     try {
-      const status = await client.status('INBOX', { messages: true });
+      const status = await client.status(targetFolder, { messages: true });
       const totalMessages = status.messages ?? 0;
 
       if (totalMessages === 0) {
@@ -191,16 +231,17 @@ export async function GET() {
     }
   } catch (error: any) {
     console.error('Fetch emails error:', error);
-    // If real connection fails, fall back to mock emails with a clear error warning flag so they know settings are wrong
     const admin = await checkAuth();
     if (admin) {
       const user = await db.user.findUnique({ where: { id: admin.userId } });
       if (user) {
+        const { searchParams } = new URL(request.url);
+        const isSentFolder = (searchParams.get('folder') || '').toUpperCase() === 'SENT';
         return NextResponse.json({ 
           success: true, 
           isMocked: true, 
           errorMsg: error?.message || 'Failed to connect to the mail server. Showing offline/cached messages.',
-          data: getMockEmails(user.role, user.email) 
+          data: isSentFolder ? getMockSentEmails(user.role, user.email) : getMockEmails(user.role, user.email) 
         });
       }
     }

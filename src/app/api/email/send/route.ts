@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { verifyJWT } from '@/lib/jwt';
 import { decrypt } from '@/lib/encryption';
 import nodemailer from 'nodemailer';
+import { ImapFlow } from 'imapflow';
 
 async function checkAuth() {
   const cookieStore = await cookies();
@@ -59,16 +60,63 @@ export async function POST(request: Request) {
       }
     });
 
+    const htmlBody = message.replace(/\n/g, '<br />');
+
     // Send mail
     await transporter.sendMail({
       from: `"${user.name || 'Edifice Staff'}" <${user.emailUsername}>`,
       to,
       subject,
       text: message,
-      html: message.replace(/\n/g, '<br />'), // Simple text-to-html conversion
+      html: htmlBody,
     });
 
     console.log(`Actual Email Sent Successfully!\nFrom: ${user.emailUsername}\nTo: ${to}\nSubject: ${subject}`);
+
+    // Append to IMAP Sent Folder dynamically to ensure syncing
+    if (user.emailHost) {
+      try {
+        const imapClient = new ImapFlow({
+          host: user.emailHost,
+          port: user.emailPort || 993,
+          secure: true,
+          auth: {
+            user: user.emailUsername,
+            pass: decryptedPassword,
+          },
+          logger: false,
+        });
+
+        await imapClient.connect();
+
+        // Find sent folder dynamically on the IMAP server
+        const mailboxes = await imapClient.list();
+        const sentBox = mailboxes.find(m => 
+          m.path.toUpperCase() === 'SENT' || 
+          m.path.toUpperCase().includes('SENT') ||
+          m.name.toUpperCase().includes('SENT')
+        );
+        const targetSentFolder = sentBox ? sentBox.path : 'Sent';
+
+        const rawMimeMessage = [
+          `From: "${user.name || 'Edifice Staff'}" <${user.emailUsername}>`,
+          `To: ${to}`,
+          `Subject: ${subject}`,
+          `Date: ${new Date().toUTCString()}`,
+          `MIME-Version: 1.0`,
+          `Content-Type: text/html; charset=utf-8`,
+          ``,
+          htmlBody
+        ].join('\r\n');
+
+        await imapClient.append(targetSentFolder, rawMimeMessage, ['\\Seen']);
+        await imapClient.logout();
+        console.log(`Email successfully appended to IMAP folder: ${targetSentFolder}`);
+      } catch (imapErr) {
+        console.error('Failed to append copy to IMAP Sent folder:', imapErr);
+      }
+    }
+
     return NextResponse.json({ 
       success: true, 
       isMocked: false, 

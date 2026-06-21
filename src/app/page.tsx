@@ -170,7 +170,7 @@ export default async function HomePage() {
               <div className="group flex flex-col md:flex-row gap-6 lg:gap-8 items-center md:items-start bg-white p-6 md:p-8 rounded-3xl border border-[#dfc28c]/30 hover:border-[#dfc28c] shadow-lg hover:shadow-xl transition-all duration-300 w-full">
                 <div className="relative w-48 h-56 rounded-2xl overflow-hidden shrink-0 bg-[#0a192f] shadow-md border-2 border-[#dfc28c]/30">
                   <img
-                    src={settings.cofounder1_image || "/assets/images/Mr.-abbas-Message-02-1.jpg"}
+                    src={settings.cofounder1_image || "/assets/edifice/home/home-cofounder-abbas.jpg"}
                     alt={settings.cofounder1_name || "Abbas Rasheed"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.05]"
                   />
@@ -191,7 +191,7 @@ export default async function HomePage() {
               <div className="group flex flex-col md:flex-row gap-6 lg:gap-8 items-center md:items-start bg-white p-6 md:p-8 rounded-3xl border border-[#dfc28c]/30 hover:border-[#dfc28c] shadow-lg hover:shadow-xl transition-all duration-300 w-full">
                 <div className="relative w-48 h-56 rounded-2xl overflow-hidden shrink-0 bg-[#0a192f] shadow-md border-2 border-[#dfc28c]/30">
                   <img
-                    src={settings.cofounder2_image || "/assets/images/WhatsApp-Image-2025-10-01-at-1.01.10-PM.jpeg"}
+                    src={settings.cofounder2_image || "/assets/edifice/home/home-cofounder-abbas.jpg"}
                     alt={settings.cofounder2_name || "Mr. Mou Shaojiu"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.05]"
                   />
@@ -227,7 +227,7 @@ export default async function HomePage() {
 
           <VideoModal
             videoUrl={settings.youtube_hero_url || 'https://youtu.be/LYgWq4vRT8c?si=ZIuQnIDVuzGkP-oh'}
-            thumbnail={settings.home_video_thumbnail || "/assets/images/horizon.png"}
+            thumbnail={settings.home_video_thumbnail || "/assets/edifice/properties/property-card-horizon-residency.webp"}
             title={settings.home_video_title || "Horizon Residency & Edifice Property Developments"}
           />
         </div>
@@ -267,7 +267,7 @@ export default async function HomePage() {
                 <div className="group flex flex-col bg-white rounded-3xl border border-zinc-100 hover:border-[#dfc28c]/50 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden w-full">
                   <div className="relative h-64 w-full bg-[#0a192f] overflow-hidden">
                     <img 
-                      src={blog.featuredImage || "/assets/images/horizon.png"} 
+                      src={blog.featuredImage || "/assets/edifice/properties/property-card-horizon-residency.webp"} 
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

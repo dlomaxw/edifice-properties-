@@ -55,7 +55,7 @@ export async function POST(request: Request) {
       data: {
         title,
         slug,
-        featuredImage: featuredImage || '/assets/images/horizon.png',
+        featuredImage: featuredImage || '/assets/edifice/properties/property-card-horizon-residency.webp',
         content,
         category: category || 'Company news',
         author: author || admin.name || 'Edifice Properties',

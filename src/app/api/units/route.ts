@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         bathrooms: parseInt(bathrooms) || 1,
         status: status || 'Available',
         description: description || '',
-        floorPlanImage: floorPlanImage || '/assets/images/1.webp',
+        floorPlanImage: floorPlanImage || '/assets/edifice/horizon-residency/horizon-residency-hero.webp',
       },
     });
 

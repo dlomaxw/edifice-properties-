@@ -441,7 +441,7 @@ function SettingsContent() {
                     <ImageUploader
                       value={siteLogoUrl}
                       onChange={setSiteLogoUrl}
-                      placeholder="/assets/images/edifice-logo.svg"
+                      placeholder="/assets/edifice/logo/edifice-logo-main.svg"
                     />
                   </div>
 
@@ -808,7 +808,7 @@ function SettingsContent() {
                       <ImageUploader
                         value={homeVideoThumbnail}
                         onChange={setHomeVideoThumbnail}
-                        placeholder="/assets/images/horizon.png"
+                        placeholder="/assets/edifice/properties/property-card-horizon-residency.webp"
                       />
                     </div>
                   </div>
@@ -838,7 +838,7 @@ function SettingsContent() {
                         <ImageUploader
                           value={cofounder1Image}
                           onChange={setCofounder1Image}
-                          placeholder="/assets/images/Mr.-abbas-Message-02-1.jpg"
+                          placeholder="/assets/edifice/home/home-cofounder-abbas.jpg"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -863,7 +863,7 @@ function SettingsContent() {
                         <ImageUploader
                           value={cofounder2Image}
                           onChange={setCofounder2Image}
-                          placeholder="/assets/images/WhatsApp-Image-2025-10-01-at-1.01.10-PM.jpeg"
+                          placeholder="/assets/edifice/home/home-cofounder-abbas.jpg"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5">
@@ -989,7 +989,7 @@ function SettingsContent() {
                       <ImageUploader
                         value={aboutDesignPhilosophyImage}
                         onChange={setAboutDesignPhilosophyImage}
-                        placeholder="/assets/images/horizon.png"
+                        placeholder="/assets/edifice/properties/property-card-horizon-residency.webp"
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">

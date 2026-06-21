@@ -202,7 +202,7 @@ async function main() {
   // 3. Create Global Settings
   const settings = [
     // Branding & Global
-    { key: 'site_logo_url', value: '/assets/images/edifice-logo.svg', description: 'Logo URL for header and footer' },
+    { key: 'site_logo_url', value: '/assets/edifice/logo/edifice-logo-main.svg', description: 'Logo URL for header and footer' },
     
     // Contacts & Addresses
     { key: 'phone_primary', value: '+256786000112', description: 'Primary contact phone number' },
@@ -243,17 +243,17 @@ async function main() {
     // Homepage Leadership (Co-Founders)
     { key: 'cofounder1_name', value: 'Abbas Rasheed', description: 'Co-founder 1 name' },
     { key: 'cofounder1_title', value: 'C. E. O, Edifice Properties Limited', description: 'Co-founder 1 designation' },
-    { key: 'cofounder1_image', value: '/assets/images/Mr.-abbas-Message-02-1.jpg', description: 'Co-founder 1 photo path' },
+    { key: 'cofounder1_image', value: '/assets/edifice/home/home-cofounder-abbas.jpg', description: 'Co-founder 1 photo path' },
     { key: 'cofounder1_statement', value: 'Our focus is to redefine the standard of living by integrating cutting-edge technology and modern design with innovative luxury, making luxury accessible for everyone. Our vision is to create homes that not only boast aesthetic excellence and innovative features but also enhance the living experience of our customers through sustainability and smart solutions.', description: 'Co-founder 1 message statement' },
     
     { key: 'cofounder2_name', value: 'Mr. Mou Shaojiu', description: 'Co-founder 2 name' },
     { key: 'cofounder2_title', value: 'Director, Edifice Properties Limited', description: 'Co-founder 2 designation' },
-    { key: 'cofounder2_image', value: '/assets/images/WhatsApp-Image-2025-10-01-at-1.01.10-PM.jpeg', description: 'Co-founder 2 photo path' },
+    { key: 'cofounder2_image', value: '/assets/edifice/home/home-cofounder-abbas.jpg', description: 'Co-founder 2 photo path' },
     { key: 'cofounder2_statement', value: 'At Edifice Properties Limited, we believe that construction is not just about building structures, but about creating enduring value for our clients and communities. With a strong foundation in both construction management and contractor supervision, I personally ensure that every project is executed with precision, efficiency, and integrity.', description: 'Co-founder 2 message statement' },
     
     // Homepage Cinematic Media
     { key: 'home_video_title', value: 'Horizon Residency & Edifice Property Developments', description: 'Cinematic video section title' },
-    { key: 'home_video_thumbnail', value: '/assets/images/horizon.png', description: 'Cinematic video cover thumbnail' },
+    { key: 'home_video_thumbnail', value: '/assets/edifice/properties/property-card-horizon-residency.webp', description: 'Cinematic video cover thumbnail' },
     { key: 'youtube_hero_url', value: 'https://youtu.be/LYgWq4vRT8c?si=ZIuQnIDVuzGkP-oh', description: 'Background video link for Homepage' },
     
     // Homepage Testimonials
@@ -283,7 +283,7 @@ async function main() {
     { key: 'about_story_coffee_quote', value: 'Started with a casual conversation between three people having coffee at a cafe...', description: 'About main story coffee callout quote' },
     
     // About Us Design Philosophy
-    { key: 'about_design_philosophy_image', value: '/assets/images/horizon.png', description: 'About page philosophy image path' },
+    { key: 'about_design_philosophy_image', value: '/assets/edifice/about/about-design-philosophy.png', description: 'About page philosophy image path' },
     { key: 'about_design_philosophy_title', value: 'design philosophy', description: 'About page philosophy tag text' },
     { key: 'about_design_philosophy_caption', value: 'Impeccable Architecture & Artistry', description: 'About page philosophy caption title' },
     
@@ -341,7 +341,7 @@ async function main() {
       bedrooms: '1BHK, 2BHK, 3BHK',
       bathrooms: '1-3',
       sizeRange: '600–1,700 sq.ft',
-      mainImage: '/assets/images/horizon.png',
+      mainImage: '/assets/edifice/properties/property-card-horizon-residency.webp',
       mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7562095908226!2d32.617192314753956!3d0.31505309977017647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb8a0d0a2f5f%3A0xe54d588523dfad2f!2sLuthuli%20Ave%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000000!5m2!1sen!2sug',
       youtubeUrl: '/assets/images/WhatsApp-Video-2024-08-15-at-9.07.47-AM.mp4',
       featured: true,
@@ -362,7 +362,7 @@ async function main() {
         bathrooms: 1,
         status: 'Available',
         description: 'Open-plan living & dining area, compact modern kitchen with utility space, spacious bedroom with attached washroom, balcony with scenic views, and quality flooring & natural lighting.',
-        floorPlanImage: '/assets/images/EDIFICE-PROFILE._page-0072.jpg',
+        floorPlanImage: '/assets/edifice/horizon-residency/horizon-residency-floorplan-1bhk.png',
       },
       {
         propertyId: horizon.id,
@@ -373,7 +373,7 @@ async function main() {
         bathrooms: 1,
         status: 'Available',
         description: 'Open-plan living & dining area, compact kitchen with utility space, spacious bedroom with attached washroom, balcony with scenic views, and quality flooring & natural lighting.',
-        floorPlanImage: '/assets/images/EDIFICE-PROFILE._page-0072.jpg',
+        floorPlanImage: '/assets/edifice/horizon-residency/horizon-residency-floorplan-1bhk.png',
       },
       {
         propertyId: horizon.id,
@@ -384,7 +384,7 @@ async function main() {
         bathrooms: 2,
         status: 'Available',
         description: 'Large living & dining area with balcony, modern kitchen with separate utility area, master bedroom with en-suite bathroom & balcony, second bedroom for kids/guests, common washroom, and high-quality finishes.',
-        floorPlanImage: '/assets/images/EDIFICE-PROFILE._page-0072.jpg',
+        floorPlanImage: '/assets/edifice/horizon-residency/horizon-residency-floorplan-1bhk.png',
       },
       {
         propertyId: horizon.id,
@@ -395,7 +395,7 @@ async function main() {
         bathrooms: 3,
         status: 'Available',
         description: 'Grand living & dining space with balcony access, modern kitchen with utility & store room, master bedroom with attached bathroom & private balcony, two additional bedrooms with ample storage, guest/common washroom, and maid’s room & washroom with separate entrance on select units.',
-        floorPlanImage: '/assets/images/EDIFICE-PROFILE._page-0073.jpg',
+        floorPlanImage: '/assets/edifice/horizon-residency/horizon-residency-floorplan-3bhk.png',
       },
     ],
   });
@@ -416,7 +416,7 @@ async function main() {
       bedrooms: '1BHK, 2BHK, 3BHK',
       bathrooms: '1-3',
       sizeRange: '700–1,650 sq.ft',
-      mainImage: '/assets/images/embassy.webp',
+      mainImage: '/assets/edifice/embassy-towers/embassy-towers-hero.webp',
       mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7594954497333!2d32.57864831475394!3d0.3129520997717088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc8096f5b9d7%3A0xe54d588523dfad2e!2sKampala%20Road%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000001!5m2!1sen!2sug',
       youtubeUrl: '/assets/images/WhatsApp-Video-2024-08-15-at-9.08.16-AM.mp4',
       featured: true,
@@ -437,7 +437,7 @@ async function main() {
         bathrooms: 1,
         status: 'Available',
         description: 'Living Room: A modern and open living space designed to maximize natural light. Bedroom: A cozy sanctuary with spacious wardrobes. Kitchen: Compact modular layout. Bathroom: Sleek design with premium tiles. Balcony: Private outdoor extension.',
-        floorPlanImage: '/assets/images/2-1-1024x722.png',
+        floorPlanImage: '/assets/edifice/embassy-towers/embassy-towers-floorplan-01.png',
       },
       {
         propertyId: embassy.id,
@@ -448,7 +448,7 @@ async function main() {
         bathrooms: 2,
         status: 'Available',
         description: 'Living Room: Bright, airy, and expansive. Master Bedroom: King-size layout with ensuite bathroom and private balcony. Second Bedroom: Flexible space for kids or guest. Modular kitchen and multiple balconies.',
-        floorPlanImage: '/assets/images/2-1-1024x722.png',
+        floorPlanImage: '/assets/edifice/embassy-towers/embassy-towers-floorplan-01.png',
       },
       {
         propertyId: embassy.id,
@@ -459,7 +459,7 @@ async function main() {
         bathrooms: 3,
         status: 'Available',
         description: 'Living Room: Grand, central hub with high ceilings. Master Bedroom: Walk-in closet, ensuite bath, and private balcony. Second and Third Bedrooms: Generous storage and window views. Large modular kitchen with utility zone.',
-        floorPlanImage: '/assets/images/3-1-1024x722.png',
+        floorPlanImage: '/assets/edifice/embassy-towers/embassy-towers-floorplan-02.png',
       },
     ],
   });
@@ -480,7 +480,7 @@ async function main() {
       bedrooms: '2BHK, 3BHK',
       bathrooms: '2-3',
       sizeRange: '90–128 sqm',
-      mainImage: '/assets/images/pallazo.webp',
+      mainImage: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp',
       mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.742337778546!2d32.60742131475396!3d0.33924309975267077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb13b1ab9403%3A0xe54d588523dfad2d!2sNaguru%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000002!5m2!1sen!2sug',
       youtubeUrl: 'https://www.youtube.com/watch?v=cM3C75n-k5M',
       featured: true,
@@ -501,7 +501,7 @@ async function main() {
         bathrooms: 2,
         status: 'Available',
         description: 'Spacious living and dining area, modern open-plan kitchen, elegant interiors with high-quality finishes, and peaceful residential surroundings.',
-        floorPlanImage: '/assets/images/2.png',
+        floorPlanImage: '/assets/edifice/elite-palazzo/elite-palazzo-interior-02.png',
       },
       {
         propertyId: elite.id,
@@ -512,7 +512,7 @@ async function main() {
         bathrooms: 3,
         status: 'Available',
         description: 'Designed for comfort and long-term value. Includes a large living and dining area, fully fitted modern kitchen, three well-sized bedrooms with attached master bathroom, and private balconies with neighborhood views.',
-        floorPlanImage: '/assets/images/3.png',
+        floorPlanImage: '/assets/edifice/elite-palazzo/elite-palazzo-interior-03.png',
       },
     ],
   });
@@ -533,7 +533,7 @@ async function main() {
       bedrooms: '2BHK, 3BHK',
       bathrooms: '2-3',
       sizeRange: '100–150 sqm',
-      mainImage: '/assets/images/envato-labs-image-edit-64-1.png',
+      mainImage: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png',
       mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.030806497223!2d32.582519999999996!3d0.31628000000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc8096f5b9d7%3A0xe54d588523dfad2e!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sug!4v1700000000003!5m2!1sen!2sug',
       youtubeUrl: 'https://www.youtube.com/watch?v=s1X9eM6y6o8',
       featured: false,
@@ -554,7 +554,7 @@ async function main() {
         bathrooms: 2,
         status: 'Available',
         description: 'Large living & dining area with natural lighting, fully fitted kitchen with utility space, master bedroom with ensuite bathroom, guest bedroom with balcony access, and common bathroom.',
-        floorPlanImage: '/assets/images/3-4-496x279.png',
+        floorPlanImage: '/assets/edifice/atlantic-apartments/atlantic-apartments-interior-01.png',
       },
       {
         propertyId: atlantic.id,
@@ -565,7 +565,7 @@ async function main() {
         bathrooms: 3,
         status: 'Available',
         description: 'Expansive living + dining room with balcony, modern kitchen with store & utility area, master suite with ensuite bath & private balcony, two additional bedrooms (1 ensuite, 1 with shared bathroom), and large windows.',
-        floorPlanImage: '/assets/images/4-3-496x279.png',
+        floorPlanImage: '/assets/edifice/atlantic-apartments/atlantic-apartments-interior-02.png',
       },
     ],
   });
@@ -586,7 +586,7 @@ async function main() {
       bedrooms: '1BHK, 2BHK, 3BHK',
       bathrooms: '1-3',
       sizeRange: '55–120 sqm',
-      mainImage: '/assets/images/urban.webp',
+      mainImage: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png',
       mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.713601579294!2d32.617300714754026!3d0.37050309972985166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbba2c366ff05%3A0xe54d588523dfad2c!2sKulambiro%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000004!5m2!1sen!2sug',
       youtubeUrl: '/assets/images/urban-view-apartments.mp4',
       featured: false,
@@ -607,7 +607,7 @@ async function main() {
         bathrooms: 1,
         status: 'Sold out',
         description: 'Cozy living & dining space, modern fitted kitchen, spacious bedroom, bathroom with premium fittings, balcony with city view, and wardrobe space.',
-        floorPlanImage: '/assets/images/DJI-0001-1024x576.png',
+        floorPlanImage: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png',
       },
       {
         propertyId: urban.id,
@@ -618,7 +618,7 @@ async function main() {
         bathrooms: 2,
         status: 'Sold out',
         description: 'Spacious living & dining area, fully equipped modular kitchen + utility space, master bedroom with attached bathroom, second bedroom with balcony access, common washroom, and ample storage space.',
-        floorPlanImage: '/assets/images/DJI-0002-1024x576.png',
+        floorPlanImage: '/assets/edifice/urban-view-apartments/urban-view-living-room.png',
       },
       {
         propertyId: urban.id,
@@ -629,7 +629,7 @@ async function main() {
         bathrooms: 3,
         status: 'Sold out',
         description: 'Expansive living & dining area with natural lighting, modern kitchen with store & utility area, master bedroom with ensuite & private balcony, two additional bedrooms (1 ensuite, 1 with balcony), and common washroom.',
-        floorPlanImage: '/assets/images/DJI-0003.png',
+        floorPlanImage: '/assets/edifice/urban-view-apartments/urban-view-floorplan-type-a.png',
       },
     ],
   });
@@ -639,63 +639,63 @@ async function main() {
   // 4b. Create Property Images
   const propertyImages = [
     // Horizon Residency
-    { propertyId: 'horizon-residency', url: '/assets/images/horizon.png', category: 'exterior', label: 'Architectural Entrance Facade', description: 'Stunning modern exterior featuring floor-to-ceiling glass paneling and premium structural finishing.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/1.webp', category: 'exterior', label: 'Cinematic Facade Rendering', description: 'Photorealistic exterior rendering displaying the modern verticality and premium paint styling of Horizon Residency.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/2-1.webp', category: 'exterior', label: 'Corner & Balcony Perspectives', description: 'Detailed exterior perspective highlighting double-aspect balconies and architectural sunshading.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/5.webp', category: 'exterior', label: 'Exterior Access & Driveway', description: 'Double-entry driveway with beautifully landscaped drop-off zones directly along Luthuli Avenue.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/6.webp', category: 'interior', label: 'Bespoke Interior Living Space', description: 'Sophisticated living lounge area featuring custom walnut wall panels, gold accents, and recessed LED ambient lighting.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/3-1.webp', category: 'interior', label: 'Signature Master Bedroom Showcase', description: 'Luxury bedroom visualization detailing premium floor tiling, integrated wardrobes, and warm ambient light channels.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/4-1.webp', category: 'interior', label: 'Panoramic Lounge View Concept', description: 'Spacious open-plan lounge concept looking out over the city with distinct dining partitions.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/EDIFICE-PROFILE._page-0071.jpg', category: 'floorplan', label: 'Development Block Diagram Layout', description: 'Detailed site map and blocks routing overview demonstrating secure neighborhood boundary lines.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/EDIFICE-PROFILE._page-0072.jpg', category: 'floorplan', label: 'Apartment Type 1 Layout Specifications', description: 'Engineering plans highlighting door width clearances, window placements, and structural partitions.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/EDIFICE-PROFILE._page-0073.jpg', category: 'floorplan', label: 'Apartment Type 2 Layout Specifications', description: 'Detailed bathroom plumbing guides and kitchen cabinetry partition outlines.' },
-    { propertyId: 'horizon-residency', url: '/assets/images/DTB-Flyers-Horizon-Residency-1638x2048.png', category: 'floorplan', label: 'Horizon Residency Brochure Flyer', description: 'Complete project documentation flyer detailing dimensions, structural specifications, and corporate features.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/properties/property-card-horizon-residency.webp', category: 'exterior', label: 'Architectural Entrance Facade', description: 'Stunning modern exterior featuring floor-to-ceiling glass paneling and premium structural finishing.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-hero.webp', category: 'exterior', label: 'Cinematic Facade Rendering', description: 'Photorealistic exterior rendering displaying the modern verticality and premium paint styling of Horizon Residency.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-gallery-01.webp', category: 'exterior', label: 'Corner & Balcony Perspectives', description: 'Detailed exterior perspective highlighting double-aspect balconies and architectural sunshading.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-gallery-04.webp', category: 'exterior', label: 'Exterior Access & Driveway', description: 'Double-entry driveway with beautifully landscaped drop-off zones directly along Luthuli Avenue.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-gallery-05.webp', category: 'interior', label: 'Bespoke Interior Living Space', description: 'Sophisticated living lounge area featuring custom walnut wall panels, gold accents, and recessed LED ambient lighting.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-gallery-02.webp', category: 'interior', label: 'Signature Master Bedroom Showcase', description: 'Luxury bedroom visualization detailing premium floor tiling, integrated wardrobes, and warm ambient light channels.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-gallery-03.webp', category: 'interior', label: 'Panoramic Lounge View Concept', description: 'Spacious open-plan lounge concept looking out over the city with distinct dining partitions.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-floorplan-diagram.jpg', category: 'floorplan', label: 'Development Block Diagram Layout', description: 'Detailed site map and blocks routing overview demonstrating secure neighborhood boundary lines.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-floorplan-1bhk.png', category: 'floorplan', label: 'Apartment Type 1 Layout Specifications', description: 'Engineering plans highlighting door width clearances, window placements, and structural partitions.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-floorplan-3bhk.png', category: 'floorplan', label: 'Apartment Type 2 Layout Specifications', description: 'Detailed bathroom plumbing guides and kitchen cabinetry partition outlines.' },
+    { propertyId: 'horizon-residency', url: '/assets/edifice/horizon-residency/horizon-residency-flyer.png', category: 'floorplan', label: 'Horizon Residency Brochure Flyer', description: 'Complete project documentation flyer detailing dimensions, structural specifications, and corporate features.' },
 
     // Embassy Towers
-    { propertyId: 'embassy-towers', url: '/assets/images/embassy.webp', category: 'exterior', label: 'Corporate District Elevation', description: 'Grand towering steel-and-glass design set in the heart of Kampala\'s prestigious business district.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/WhatsApp-Image-2024-09-12-at-1.16.19-PM-2.jpeg', category: 'exterior', label: 'Structural Foundation Progress', description: 'High-durability reinforced concrete pillar framework under construction on the Embassy Towers site.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/WhatsApp-Image-2024-09-12-at-1.16.20-PM.jpeg', category: 'exterior', label: 'Floor Level Construction Update', description: 'Laying out high-strength post-tensioned slabs and primary conduits during main framing.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/WhatsApp-Image-2024-09-12-at-1.16.22-PM.jpeg', category: 'exterior', label: 'Exterior Facade Glass Installation', description: 'Double-glazed soundproof glass panels being assembled across the building facade layers.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/WhatsApp-Image-2024-09-12-at-1.16.24-PM.jpeg', category: 'exterior', label: 'Acoustic Glazing Assembly', description: 'Engineered structural panels details providing optimal noise dampening for interior office layouts.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/8-1.png', category: 'interior', label: 'Modular Luxury Kitchen Layout', description: 'Bespoke cabinet plans featuring gold framing, integrated cooktop ventilation, and quartz counters.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/9.png', category: 'interior', label: 'Premium Bathroom Finishes', description: 'Elegantly tiled walk-in rain showers with gold fixtures and suspended vanity layouts.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/10.png', category: 'interior', label: 'Executive Living Room Salon', description: 'Warm lounge renderings showcasing custom wall sconces, integrated media walls, and ceiling coves.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/2-1-1024x722.png', category: 'floorplan', label: '1BHK & 2BHK Layout Outline', description: 'Open living-dining space optimization plans showing structural columns and partition layouts.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/3-1-1024x722.png', category: 'floorplan', label: '3BHK Executive Layout Outline', description: 'High-density three-bedroom floor plans with en-suite master facilities and dual aspect balconies.' },
-    { propertyId: 'embassy-towers', url: '/assets/images/DTB-Flyers-Embassy-Towers-1638x2048.png', category: 'floorplan', label: 'Embassy Towers Brochure Flyer', description: 'Promotional brochure highlighting payment installments, project location metrics, and site layouts.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-hero.webp', category: 'exterior', label: 'Corporate District Elevation', description: 'Grand towering steel-and-glass design set in the heart of Kampala\'s prestigious business district.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-construction-01.jpeg', category: 'exterior', label: 'Structural Foundation Progress', description: 'High-durability reinforced concrete pillar framework under construction on the Embassy Towers site.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-construction-02.jpeg', category: 'exterior', label: 'Floor Level Construction Update', description: 'Laying out high-strength post-tensioned slabs and primary conduits during main framing.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-construction-03.jpeg', category: 'exterior', label: 'Exterior Facade Glass Installation', description: 'Double-glazed soundproof glass panels being assembled across the building facade layers.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-construction-04.jpeg', category: 'exterior', label: 'Acoustic Glazing Assembly', description: 'Engineered structural panels details providing optimal noise dampening for interior office layouts.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-interior-01.png', category: 'interior', label: 'Modular Luxury Kitchen Layout', description: 'Bespoke cabinet plans featuring gold framing, integrated cooktop ventilation, and quartz counters.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-interior-02.png', category: 'interior', label: 'Premium Bathroom Finishes', description: 'Elegantly tiled walk-in rain showers with gold fixtures and suspended vanity layouts.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-interior-03.png', category: 'interior', label: 'Executive Living Room Salon', description: 'Warm lounge renderings showcasing custom wall sconces, integrated media walls, and ceiling coves.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-floorplan-01.png', category: 'floorplan', label: '1BHK & 2BHK Layout Outline', description: 'Open living-dining space optimization plans showing structural columns and partition layouts.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-floorplan-02.png', category: 'floorplan', label: '3BHK Executive Layout Outline', description: 'High-density three-bedroom floor plans with en-suite master facilities and dual aspect balconies.' },
+    { propertyId: 'embassy-towers', url: '/assets/edifice/embassy-towers/embassy-towers-flyer.png', category: 'floorplan', label: 'Embassy Towers Brochure Flyer', description: 'Promotional brochure highlighting payment installments, project location metrics, and site layouts.' },
 
     // Elite Palazzo Naguru
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/pallazo.webp', category: 'exterior', label: 'Naguru Hilltop Architectural Facade', description: 'Majestic design standing at Kampala\'s highest point, offering panoramic outlooks over the cityscape.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/envato-labs-image-edit-2.webp', category: 'exterior', label: 'Perimeter Driveway & Dropoff', description: 'Gated parking approach, secure guard facilities, and beautifully paved modern vehicular rampways.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/WhatsApp-Image-2025-01-09-at-12.57.20_31ca38cf.jpg', category: 'exterior', label: 'Construction Site Earthworks', description: 'Deep excavation and soil retention wall construction on the Naguru hilltop site.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/WhatsApp-Image-2025-01-09-at-12.57.20_cb4802eb.jpg', category: 'exterior', label: 'Structural Floor Construction', description: 'Laying concrete columns and tensioning deck reinforcements for upper apartment levels.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/WhatsApp-Image-2025-01-09-at-12.57.20_f3822509.jpg', category: 'exterior', label: 'Foundation Core Piling Update', description: 'Piling machine active on site, drilling deep concrete piers to ensure load-bearing hilltop stability.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/2.png', category: 'interior', label: 'Marble Reception Lobby', description: 'Imported Greek marble floors and custom gold-accented light installations welcoming residents.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/3.png', category: 'interior', label: 'Hilltop Sunset Balcony View', description: 'Spacious interior salon with double glass doors leading directly to sprawling hilltop viewing terraces.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/Flux_Schnell_a_lush_3d_render_of_Photorealistic_luxury_standar_2.jpg', category: 'interior', label: 'Master Penthouse Suite Rendering', description: 'Luxury master bedroom space detailing plush headboard panels, gold accents, and floor-to-ceiling windows.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/4.png', category: 'floorplan', label: 'Precision Penthouse Layout', description: 'Elite layout prioritizing cross-ventilation, panoramic terraces, and distinct domestic quarters.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/EDIFICE-PROFILE._page-0029.jpg', category: 'floorplan', label: 'Elite Palazzo Layout Dimensions', description: 'Dimension specs sheets showing bedroom sizes, terrace areas, and total square footage breakdowns.' },
-    { propertyId: 'elite-palazzo-naguru', url: '/assets/images/DTB-FlyersElite-Palazzo-1638x2048.png', category: 'floorplan', label: 'Naguru Palazzo Brochure Flyer', description: 'Executive project overview brochure displaying premium finishes and amenity highlights.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp', category: 'exterior', label: 'Naguru Hilltop Architectural Facade', description: 'Majestic design standing at Kampala\'s highest point, offering panoramic outlooks over the cityscape.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-exterior-01.webp', category: 'exterior', label: 'Perimeter Driveway & Dropoff', description: 'Gated parking approach, secure guard facilities, and beautifully paved modern vehicular rampways.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-construction-01.jpg', category: 'exterior', label: 'Construction Site Earthworks', description: 'Deep excavation and soil retention wall construction on the Naguru hilltop site.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-construction-02.jpg', category: 'exterior', label: 'Structural Floor Construction', description: 'Laying concrete columns and tensioning deck reinforcements for upper apartment levels.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-construction-03.jpg', category: 'exterior', label: 'Foundation Core Piling Update', description: 'Piling machine active on site, drilling deep concrete piers to ensure load-bearing hilltop stability.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-interior-02.png', category: 'interior', label: 'Marble Reception Lobby', description: 'Imported Greek marble floors and custom gold-accented light installations welcoming residents.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-interior-03.png', category: 'interior', label: 'Hilltop Sunset Balcony View', description: 'Spacious interior salon with double glass doors leading directly to sprawling hilltop viewing terraces.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-room-render.jpg', category: 'interior', label: 'Master Penthouse Suite Rendering', description: 'Luxury master bedroom space detailing plush headboard panels, gold accents, and floor-to-ceiling windows.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-dimension-sheet.jpg', category: 'floorplan', label: 'Precision Penthouse Layout', description: 'Elite layout prioritizing cross-ventilation, panoramic terraces, and distinct domestic quarters.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-dimension-sheet.jpg', category: 'floorplan', label: 'Elite Palazzo Layout Dimensions', description: 'Dimension specs sheets showing bedroom sizes, terrace areas, and total square footage breakdowns.' },
+    { propertyId: 'elite-palazzo-naguru', url: '/assets/edifice/elite-palazzo/elite-palazzo-flyer.png', category: 'floorplan', label: 'Naguru Palazzo Brochure Flyer', description: 'Executive project overview brochure displaying premium finishes and amenity highlights.' },
 
     // Atlantic Apartments
-    { propertyId: 'atlantic-apartments', url: '/assets/images/envato-labs-image-edit-64-1.png', category: 'exterior', label: 'Atlantic Heights Main Facade', description: 'Clean architectural lines and modern high-end stucco finish with custom structural accents.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/2-4-496x279.png', category: 'exterior', label: 'Lush Landscaping & Approach', description: 'Secure gated security perimeter and landscaped front walkways tailored for family arrivals.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/3-4-496x279.png', category: 'interior', label: 'Sophisticated Living Area', description: 'Premium hardwood paneling and contemporary luxury lighting fixture layouts.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/4-3-496x279.png', category: 'interior', label: 'Luxury Master Suite Room', description: 'Plush master bedroom renders showing expansive closets and elegant, relaxing vanity units.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/5-2-496x279.png', category: 'floorplan', label: '1BHK Family Starter Plan', description: 'Optimal layout highlighting separate laundry cabinets and an integrated breakfast bar.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/6-1-496x279.png', category: 'floorplan', label: '2BHK Premium Family Plan', description: 'Balanced space offering two self-contained bedrooms and high daylight penetration.' },
-    { propertyId: 'atlantic-apartments', url: '/assets/images/7-1-496x279.png', category: 'floorplan', label: '3BHK Spacious Residence Plan', description: 'Sprawling three-bedroom layout optimized specifically for diaspora buyers seeking secure investment equity.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png', category: 'exterior', label: 'Atlantic Heights Main Facade', description: 'Clean architectural lines and modern high-end stucco finish with custom structural accents.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png', category: 'exterior', label: 'Lush Landscaping & Approach', description: 'Secure gated security perimeter and landscaped front walkways tailored for family arrivals.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-interior-01.png', category: 'interior', label: 'Sophisticated Living Area', description: 'Premium hardwood paneling and contemporary luxury lighting fixture layouts.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-interior-02.png', category: 'interior', label: 'Luxury Master Suite Room', description: 'Plush master bedroom renders showing expansive closets and elegant, relaxing vanity units.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-floorplan-1bhk.png', category: 'floorplan', label: '1BHK Family Starter Plan', description: 'Optimal layout highlighting separate laundry cabinets and an integrated breakfast bar.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-floorplan-2bhk.png', category: 'floorplan', label: '2BHK Premium Family Plan', description: 'Balanced space offering two self-contained bedrooms and high daylight penetration.' },
+    { propertyId: 'atlantic-apartments', url: '/assets/edifice/atlantic-apartments/atlantic-apartments-floorplan-3bhk.png', category: 'floorplan', label: '3BHK Spacious Residence Plan', description: 'Sprawling three-bedroom layout optimized specifically for diaspora buyers seeking secure investment equity.' },
 
     // Urban View Apartments
-    { propertyId: 'urban-view-apartments', url: '/assets/images/urban.webp', category: 'exterior', label: 'Urban View Main Approach', description: 'Peaceful residential architecture nestled within the green, serene valleys of Kulambiro.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/DJI-0001-1024x576.png', category: 'exterior', label: 'Panoramic Aerial Drone View', description: 'Sweeping drone photography of the building\'s rooftop gazebo oasis and landscaped perimeter.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/DJI-0002-1024x576.png', category: 'interior', label: 'Light-Filled Living Room', description: 'Warm, cozy family lounge showing high ceilings and broad double-glazed slider windows.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/DJI-0003.png', category: 'floorplan', label: 'Type A Optimized Floor Plan', description: 'Functional layout maximizing kitchen cabinetry and private bedroom alcoves.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/DJI-0004.png', category: 'floorplan', label: 'Type B Multi-Balcony Floor Plan', description: 'Large family layout featuring dual aspects and expansive outdoor balcony seating area plans.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/EDIFICE-PROFILE._page-0048.jpg', category: 'floorplan', label: 'Block Walkway Site Diagram', description: 'Site layout plan displaying building access roadways, common gardens, and children play fields.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/EDIFICE-PROFILE._page-0049.jpg', category: 'floorplan', label: '1BHK Dimensions & Sizing Sheets', description: 'Technical drawing demonstrating room boundaries, structural doors, and plumbing pipes layout.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/EDIFICE-PROFILE._page-0050.jpg', category: 'floorplan', label: '2BHK Dimensions & Sizing Sheets', description: 'Comprehensive 2-bedroom dimensions outlining balcony spaces and kitchen counter widths.' },
-    { propertyId: 'urban-view-apartments', url: '/assets/images/EDIFICE-PROFILE._page-0052.jpg', category: 'floorplan', label: '3BHK Executive Penthouses Layout', description: 'Upper floor planning detailing maids rooms, separate laundry utilities, and penthouse layouts.' }
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png', category: 'exterior', label: 'Urban View Main Approach', description: 'Peaceful residential architecture nestled within the green, serene valleys of Kulambiro.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png', category: 'exterior', label: 'Panoramic Aerial Drone View', description: 'Sweeping drone photography of the building\'s rooftop gazebo oasis and landscaped perimeter.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-living-room.png', category: 'interior', label: 'Light-Filled Living Room', description: 'Warm, cozy family lounge showing high ceilings and broad double-glazed slider windows.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-floorplan-type-a.png', category: 'floorplan', label: 'Type A Optimized Floor Plan', description: 'Functional layout maximizing kitchen cabinetry and private bedroom alcoves.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-floorplan-type-b.png', category: 'floorplan', label: 'Type B Multi-Balcony Floor Plan', description: 'Large family layout featuring dual aspects and expansive outdoor balcony seating area plans.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-site-diagram.jpg', category: 'floorplan', label: 'Block Walkway Site Diagram', description: 'Site layout plan displaying building access roadways, common gardens, and children play fields.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-1bhk-dimensions.jpg', category: 'floorplan', label: '1BHK Dimensions & Sizing Sheets', description: 'Technical drawing demonstrating room boundaries, structural doors, and plumbing pipes layout.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-2bhk-dimensions.jpg', category: 'floorplan', label: '2BHK Dimensions & Sizing Sheets', description: 'Comprehensive 2-bedroom dimensions outlining balcony spaces and kitchen counter widths.' },
+    { propertyId: 'urban-view-apartments', url: '/assets/edifice/urban-view-apartments/urban-view-3bhk-dimensions.jpg', category: 'floorplan', label: '3BHK Executive Penthouses Layout', description: 'Upper floor planning detailing maids rooms, separate laundry utilities, and penthouse layouts.' }
   ];
 
   for (const img of propertyImages) {
@@ -708,7 +708,7 @@ async function main() {
     {
       title: 'Why Investing in Bugolobi Real Estate Yields High Returns',
       slug: 'why-investing-in-bugolobi-real-estate-yields-high-returns',
-      featuredImage: '/assets/images/horizon.png',
+      featuredImage: '/assets/edifice/properties/property-card-horizon-residency.webp',
       content: '<p>Bugolobi has long been recognized as one of Kampala\'s most premium residential suburbs. With its central location, easy access to the business district, and rich lifestyle amenities, properties like <strong>Horizon Residency</strong> on Luthuli Avenue are commanding impressive rental yields.</p><h3>High Demand for Corporate Rentals</h3><p>Due to the presence of multinational offices, schools, and medical facilities, there is a steady stream of expats and corporate managers seeking high-end apartments in Bugolobi. 2BHK and 3BHK units command premium monthly rental rates, making them attractive for buy-to-let investors.</p><h3>Infrastructure and Road Accessibility</h3><p>With Luthuli Avenue recently upgraded and improved connectivity to the Kampala-Entebbe Expressway links, Bugolobi offers seamless commutes, making it highly desirable for working professionals.</p>',
       category: 'Investment advice',
       author: 'Edifice Properties Team',
@@ -719,7 +719,7 @@ async function main() {
     {
       title: 'Construction Update: Embassy Towers Reaches Landmark Completion Stage',
       slug: 'construction-update-embassy-towers-reaches-landmark-completion-stage',
-      featuredImage: '/assets/images/embassy.webp',
+      featuredImage: '/assets/edifice/embassy-towers/embassy-towers-hero.webp',
       content: '<p>We are excited to share the latest progress from our <strong>Embassy Towers</strong> development. The structure is now at 85% completion, with internal plastering, piping, and wiring currently under way.</p><h3>Focusing on Premium Finishing</h3><p>At Edifice, we do not compromise on quality. Our site teams are installing high-grade aluminum windows, double glazing for noise insulation, and laying down Italian porcelain tiles in all living spaces.</p><h3>Handover Timelines</h3><p>We remain on track to begin the final walkthroughs and handovers to our reservation holders within the next few months. Limited units are still available for sale starting at $68,000.</p>',
       category: 'Construction updates',
       author: 'Project Engineering Team',
@@ -730,7 +730,7 @@ async function main() {
     {
       title: '7 Crucial Steps in the Property Buying Journey in Uganda',
       slug: '7-crucial-steps-in-the-property-buying-journey-in-uganda',
-      featuredImage: '/assets/images/pallazo.webp',
+      featuredImage: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp',
       content: '<p>Purchasing an apartment is an exciting milestone, but navigating the legal and financial process can feel overwhelming. Here is a clear breakdown of the customer journey when buying with Edifice Properties:</p><h3>1. Initial Consultation</h3><p>Meet with property consultants to discuss your budget, layout preferences, and select the best projects matching your needs.</p><h3>2. Exclusive Site Visit</h3><p>Take a guided site tour to see the location, view mock apartments, and inspect the building construction quality.</p><h3>3. Reservation</h3><p>Secure your unit with a reservation fee and obtain a formal reservation agreement containing specifications and price.</p><h3>4. Financial Arrangement</h3><p>Finalize your custom installment plan (we offer flexible 12 to 36-month options) or coordinate with your mortgage bank.</p><h3>5. Legal Documentation & Registration</h3><p>Our legal team prepares the sales agreement, verifies title deeds, coordinates stamp duty payment, and processes ownership transfer registration.</p><h3>6. Handover & Key Ceremony</h3><p>Once construction is fully complete, perform a joint walkthrough, log any minor snagging issues, sign the handover sheet, and receive your keys and structural warranties.</p>',
       category: 'Homeownership tips',
       author: 'Legal & Sales Dept',

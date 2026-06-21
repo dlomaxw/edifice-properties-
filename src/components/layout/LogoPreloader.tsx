@@ -84,7 +84,7 @@ export default function LogoPreloader() {
               className="relative w-full aspect-[3.2/1] drop-shadow-[0_0_35px_rgba(223,194,140,0.25)] flex items-center justify-center"
             >
               <img 
-                src="/assets/images/edifice-logo.svg" 
+                src="/assets/edifice/logo/edifice-logo-main.svg" 
                 alt="Edifice Properties Logo" 
                 className="w-full h-full object-contain filter brightness-110 contrast-125" 
               />

@@ -103,7 +103,7 @@ export default async function AboutPage() {
           <ScrollReveal direction="right" delay={0.2}>
             <div className="relative aspect-[4/3] bg-zinc-950 rounded-3xl overflow-hidden shadow-2xl border border-black/5 hover:scale-[1.02] transition-transform duration-500">
               <Image
-                src={settings.about_design_philosophy_image || "/assets/images/horizon.png"}
+                src={settings.about_design_philosophy_image || "/assets/edifice/properties/property-card-horizon-residency.webp"}
                 alt="Edifice properties design rendering"
                 fill
                 className="object-cover"

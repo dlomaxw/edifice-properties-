@@ -36,7 +36,7 @@ export default function AdminBlogsPage() {
   // Form Fields State
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
-  const [featuredImage, setFeaturedImage] = useState('/assets/images/horizon.png');
+  const [featuredImage, setFeaturedImage] = useState('/assets/edifice/properties/property-card-horizon-residency.webp');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('Property updates');
   const [author, setAuthor] = useState('Edifice Properties Team');
@@ -79,7 +79,7 @@ export default function AdminBlogsPage() {
     } else {
       setTitle('');
       setSlug('');
-      setFeaturedImage('/assets/images/horizon.png');
+      setFeaturedImage('/assets/edifice/properties/property-card-horizon-residency.webp');
       setContent('');
       setCategory('Property updates');
       setAuthor('Edifice Properties Team');
@@ -360,7 +360,7 @@ export default function AdminBlogsPage() {
               <ImageUploader
                 value={featuredImage}
                 onChange={setFeaturedImage}
-                placeholder="/assets/images/horizon.png"
+                placeholder="/assets/edifice/properties/property-card-horizon-residency.webp"
               />
             </div>
 

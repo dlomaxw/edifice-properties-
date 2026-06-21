@@ -7,7 +7,7 @@ import { MessageSquare, Calendar, ChevronRight } from 'lucide-react';
 
 const heroSlides = [
   {
-    image: '/assets/images/horizon.png',
+    image: '/assets/edifice/properties/property-card-horizon-residency.webp',
     title: 'Redefining Urban Living Through Premium Residences',
     subtitle: 'THE HORIZON RESIDENCY',
     location: 'Luthuli Avenue, Bugolobi',
@@ -15,7 +15,7 @@ const heroSlides = [
     link: '/properties/horizon-residency',
   },
   {
-    image: '/assets/images/embassy.webp',
+    image: '/assets/edifice/embassy-towers/embassy-towers-hero.webp',
     title: 'Sophisticated High-Rise Suites in Kampala',
     subtitle: 'EMBASSY TOWERS',
     location: 'Kampala Road, Kampala',
@@ -23,7 +23,7 @@ const heroSlides = [
     link: '/properties/embassy-towers',
   },
   {
-    image: '/assets/images/pallazo.webp',
+    image: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp',
     title: 'Modern Elegance Meets City Connectivity',
     subtitle: 'ELITE PALAZZO',
     location: 'Naguru, Kampala',
@@ -31,7 +31,7 @@ const heroSlides = [
     link: '/properties/elite-palazzo-naguru',
   },
   {
-    image: '/assets/images/envato-labs-image-edit-64-1.png',
+    image: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png',
     title: 'A Design-Led Sanctuary Close to Everything',
     subtitle: 'ATLANTIC HEIGHTS',
     location: 'Kampala',

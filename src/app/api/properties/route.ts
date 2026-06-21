@@ -91,7 +91,7 @@ export async function POST(request: Request) {
         bedrooms: bedrooms || '',
         bathrooms: bathrooms || '',
         sizeRange: sizeRange || '',
-        mainImage: mainImage || '/assets/images/logo.png',
+        mainImage: mainImage || '/assets/edifice/logo/edifice-logo-main.svg',
         mapUrl: mapUrl || '',
         youtubeUrl: youtubeUrl || '',
         featured: !!featured,

@@ -13,11 +13,11 @@ interface PropertyItem {
 }
 
 const propertiesList: PropertyItem[] = [
-  { name: 'Horizon Residency', href: '/properties/horizon-residency', image: '/assets/images/horizon.png' },
-  { name: 'Embassy Towers', href: '/properties/embassy-towers', image: '/assets/images/embassy.webp' },
-  { name: 'Elite Palazzo Naguru', href: '/properties/elite-palazzo-naguru', image: '/assets/images/pallazo.webp' },
-  { name: 'Atlantic Apartments', href: '/properties/atlantic-apartments', image: '/assets/images/envato-labs-image-edit-64-1.png' },
-  { name: 'Urban View Apartments', href: '/properties/urban-view-apartments', image: '/assets/images/urban.webp' },
+  { name: 'Horizon Residency', href: '/properties/horizon-residency', image: '/assets/edifice/properties/property-card-horizon-residency.webp' },
+  { name: 'Embassy Towers', href: '/properties/embassy-towers', image: '/assets/edifice/embassy-towers/embassy-towers-hero.webp' },
+  { name: 'Elite Palazzo Naguru', href: '/properties/elite-palazzo-naguru', image: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp' },
+  { name: 'Atlantic Apartments', href: '/properties/atlantic-apartments', image: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png' },
+  { name: 'Urban View Apartments', href: '/properties/urban-view-apartments', image: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png' },
 ];
 
 export default function Navbar() {
@@ -101,7 +101,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="relative w-48 h-14 md:w-56 md:h-16 transition-all duration-300">
               <img 
-                src={settings.site_logo_url || "/assets/images/edifice-logo.svg"} 
+                src={settings.site_logo_url || "/assets/edifice/logo/edifice-logo-main.svg"} 
                 alt="Edifice Properties Logo" 
                 className="w-full h-full object-contain filter brightness-110" 
               />

@@ -81,7 +81,7 @@ export default function AdminPropertiesPage() {
   const [propBedrooms, setPropBedrooms] = useState('1BHK, 2BHK, 3BHK');
   const [propBathrooms, setPropBathrooms] = useState('1-3');
   const [propSizeRange, setPropSizeRange] = useState('600–1,700 sq.ft');
-  const [propMainImage, setPropMainImage] = useState('/assets/images/horizon.png');
+  const [propMainImage, setPropMainImage] = useState('/assets/edifice/properties/property-card-horizon-residency.webp');
   const [propMapUrl, setPropMapUrl] = useState('');
   const [propYoutubeUrl, setPropYoutubeUrl] = useState('');
   const [propFeatured, setPropFeatured] = useState(false);
@@ -98,7 +98,7 @@ export default function AdminPropertiesPage() {
   const [unitBathrooms, setUnitBathrooms] = useState(1);
   const [unitStatus, setUnitStatus] = useState('Available');
   const [unitDesc, setUnitDesc] = useState('');
-  const [unitFloorPlan, setUnitFloorPlan] = useState('/assets/images/1.webp');
+  const [unitFloorPlan, setUnitFloorPlan] = useState('/assets/edifice/horizon-residency/horizon-residency-hero.webp');
   const [submittingUnit, setSubmittingUnit] = useState(false);
 
   const fetchProperties = async () => {
@@ -176,7 +176,7 @@ export default function AdminPropertiesPage() {
       setPropBedrooms('1BHK, 2BHK, 3BHK');
       setPropBathrooms('1-3');
       setPropSizeRange('600–1,700 sq.ft');
-      setPropMainImage('/assets/images/horizon.png');
+      setPropMainImage('/assets/edifice/properties/property-card-horizon-residency.webp');
       setPropMapUrl('');
       setPropYoutubeUrl('');
       setPropFeatured(false);
@@ -284,7 +284,7 @@ export default function AdminPropertiesPage() {
       setUnitBathrooms(1);
       setUnitStatus('Available');
       setUnitDesc('');
-      setUnitFloorPlan('/assets/images/1.webp');
+      setUnitFloorPlan('/assets/edifice/horizon-residency/horizon-residency-hero.webp');
     }
     setActiveTab('unit_form');
   };
@@ -722,7 +722,7 @@ export default function AdminPropertiesPage() {
               <ImageUploader
                 value={propMainImage}
                 onChange={setPropMainImage}
-                placeholder="/assets/images/horizon.png"
+                placeholder="/assets/edifice/properties/property-card-horizon-residency.webp"
               />
             </div>
 
@@ -823,7 +823,7 @@ export default function AdminPropertiesPage() {
                   onClick={() => {
                     setPropImages([
                       ...propImages,
-                      { url: '/assets/images/horizon.png', category: 'interior', label: 'New Image Label', description: 'New Image Description' }
+                      { url: '/assets/edifice/properties/property-card-horizon-residency.webp', category: 'interior', label: 'New Image Label', description: 'New Image Description' }
                     ]);
                   }}
                   className="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-[#dfc28c] text-[10px] font-bold uppercase tracking-wider rounded-lg border border-white/5 flex items-center gap-1 transition-all"
@@ -864,7 +864,7 @@ export default function AdminPropertiesPage() {
                               newImgs[idx].url = url;
                               setPropImages(newImgs);
                             }}
-                            placeholder="/assets/images/1.webp"
+                            placeholder="/assets/edifice/horizon-residency/horizon-residency-hero.webp"
                           />
                         </div>
 
@@ -1043,7 +1043,7 @@ export default function AdminPropertiesPage() {
               <ImageUploader
                 value={unitFloorPlan}
                 onChange={setUnitFloorPlan}
-                placeholder="/assets/images/1.webp"
+                placeholder="/assets/edifice/horizon-residency/horizon-residency-hero.webp"
               />
             </div>
 

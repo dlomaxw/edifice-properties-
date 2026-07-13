@@ -300,7 +300,7 @@ function UnitCard({
               >
                 <Image
                   src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-                  alt="Video Thumbnail"
+                  alt={`Walkthrough Video Tour for ${unit.name}`}
                   fill
                   className="object-cover brightness-[0.7] group-hover:scale-105 transition-transform duration-500"
                   unoptimized
@@ -326,7 +326,7 @@ function UnitCard({
             <div className="relative w-full h-full">
               <Image
                 src={unit.floorPlanImage}
-                alt="Floor Plan Preview"
+                alt={`Floor Plan Layout Drawing for ${unit.name}`}
                 fill
                 className="object-contain"
                 sizes="(max-w-1024px) 100vw, 40vw"

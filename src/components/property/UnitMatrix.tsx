@@ -50,15 +50,22 @@ export default function UnitMatrix({ propertyName, units, currency }: UnitMatrix
     }
 
     if (pName.includes('horizon')) {
-      return 'https://youtu.be/k3A4DfR2z1o';
+      if (bedrooms === 1) return 'https://youtu.be/HhMveJnD3wA';
+      if (bedrooms === 2) return 'https://youtu.be/5SdItw9WkAE';
+      if (bedrooms === 3) return 'https://youtu.be/OCJAkqtJutA';
     }
 
     if (pName.includes('atlantic')) {
-      return 'https://youtu.be/k3A4DfR2z1o';
+      return 'https://youtu.be/kqrNYOfY-N8';
+    }
+
+    if (pName.includes('signature')) {
+      return 'https://youtu.be/Eact7djAeQc';
     }
 
     if (pName.includes('urban')) {
-      return 'https://youtu.be/2DYu1--DbgM';
+      if (bedrooms === 3) return 'https://youtu.be/_YhgBQ4Ijns';
+      return 'https://youtu.be/fH7uAJ0OZ6I';
     }
 
     return null;
@@ -84,99 +91,18 @@ export default function UnitMatrix({ propertyName, units, currency }: UnitMatrix
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        {units.map((unit) => {
-          const videoUrl = getUnitVideoUrl(unit.name, unit.bedrooms);
-          return (
-            <div
-              key={unit.id}
-              className="flex flex-col lg:flex-row bg-[#0a192f] rounded-3xl p-6 md:p-8 border border-white/5 shadow-xl text-white justify-between gap-6"
-            >
-              {/* Left - Specs */}
-              <div className="flex-1 flex flex-col gap-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h4 className="font-heading font-bold text-xl md:text-2xl text-[#dfc28c]">
-                    {unit.name}
-                  </h4>
-                  <span
-                    className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider ${
-                      unit.status.toLowerCase() === 'sold out'
-                        ? 'bg-red-500 text-white'
-                        : 'bg-[#dfc28c] text-[#020c1b]'
-                    }`}
-                  >
-                    {unit.status}
-                  </span>
-                </div>
-
-                <p className="text-sm text-white/60 leading-relaxed max-w-2xl">
-                  {unit.description}
-                </p>
-
-                {/* Specs Icons */}
-                <div className="flex flex-wrap gap-6 text-xs text-white/50 border-t border-white/5 pt-4">
-                  <div className="flex items-center gap-2">
-                    <Bed size={14} className="text-[#dfc28c]" />
-                    <span>{unit.bedrooms} Bedroom{unit.bedrooms > 1 ? 's' : ''}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Bath size={14} className="text-[#dfc28c]" />
-                    <span>{unit.bathrooms} Bathroom{unit.bathrooms > 1 ? 's' : ''}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Maximize size={14} className="text-[#dfc28c]" />
-                    <span>{unit.size}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right - Pricing & CTAs */}
-              <div className="flex flex-col justify-between items-start lg:items-end gap-6 shrink-0 lg:border-l border-white/5 lg:pl-8">
-                <div className="flex flex-col lg:text-right">
-                  <span className="text-[10px] uppercase tracking-wider text-white/40">Unit Pricing</span>
-                  <span className="font-heading text-2xl font-bold text-[#dfc28c]">
-                    {formatPrice(unit.price, currency)}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-2 w-full lg:w-auto">
-                  {videoUrl && (
-                    <button
-                      onClick={() => setSelectedVideo(videoUrl)}
-                      className="flex-1 lg:flex-initial px-5 h-11 border border-[#dfc28c]/25 hover:border-[#dfc28c] rounded-full text-xs font-semibold flex items-center justify-center gap-2 bg-[#dfc28c]/10 hover:bg-[#dfc28c]/25 text-[#dfc28c] transition-all cursor-pointer"
-                    >
-                      <Play size={14} className="fill-current" />
-                      <span>Watch Video</span>
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setSelectedFloorPlan(unit.floorPlanImage)}
-                    className="flex-1 lg:flex-initial px-5 h-11 border border-white/10 hover:border-[#dfc28c] rounded-full text-xs font-semibold flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
-                  >
-                    <Eye size={14} className="text-[#dfc28c]" />
-                    <span>Floor Plan</span>
-                  </button>
-                  <a
-                    href={unit.floorPlanImage}
-                    download={unit.floorPlanImage.split('/').pop()}
-                    className="flex-1 lg:flex-initial px-5 h-11 border border-white/10 hover:border-[#dfc28c] rounded-full text-xs font-semibold flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
-                  >
-                    <Download size={14} className="text-[#dfc28c]" />
-                    <span>Download Plan</span>
-                  </a>
-                  <a
-                    href={`https://wa.me/256786000112?text=Hello%20Edifice%20Properties%2C%20I%20am%20interested%20in%20${encodeURIComponent(propertyName)}%20-${encodeURIComponent(unit.name)}.%20Please%20send%20me%20pricing%20and%20payment%20details.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 lg:flex-initial px-5 h-11 bg-[#dfc28c] text-[#020c1b] hover:bg-white rounded-full text-xs font-bold flex items-center justify-center gap-2 transition-all"
-                  >
-                    <MessageSquare size={14} />
-                    <span>Enquire</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {units.map((unit) => (
+          <UnitCard
+            key={unit.id}
+            unit={unit}
+            propertyName={propertyName}
+            currency={currency}
+            formatPrice={formatPrice}
+            getUnitVideoUrl={getUnitVideoUrl}
+            getYouTubeId={getYouTubeId}
+            onSelectFloorPlan={setSelectedFloorPlan}
+          />
+        ))}
       </div>
 
       {/* Floor Plan Lightbox */}
@@ -281,6 +207,198 @@ export default function UnitMatrix({ propertyName, units, currency }: UnitMatrix
           );
         })()}
       </AnimatePresence>
+    </div>
+  );
+}
+
+interface UnitCardProps {
+  unit: any;
+  propertyName: string;
+  currency: string;
+  formatPrice: (price: number, curr: string) => string;
+  getUnitVideoUrl: (name: string, bedrooms: number) => string | null;
+  getYouTubeId: (url: string) => string | null;
+  onSelectFloorPlan: (url: string) => void;
+}
+
+function UnitCard({
+  unit,
+  propertyName,
+  currency,
+  formatPrice,
+  getUnitVideoUrl,
+  getYouTubeId,
+  onSelectFloorPlan,
+}: UnitCardProps) {
+  const videoUrl = getUnitVideoUrl(unit.name, unit.bedrooms);
+  const videoId = videoUrl ? getYouTubeId(videoUrl) : null;
+
+  // Default to video if available, otherwise floorplan
+  const [activeTab, setActiveTab] = useState<'video' | 'floorplan'>(videoUrl ? 'video' : 'floorplan');
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <div className="flex flex-col lg:flex-row bg-[#0b192e] rounded-3xl p-6 md:p-8 border border-white/5 shadow-xl text-white gap-6">
+      {/* 1. Left - Specs (35% width on desktop) */}
+      <div className="w-full lg:w-[35%] flex flex-col justify-between gap-6">
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <h4 className="font-heading font-bold text-xl md:text-2xl text-[#dfc28c]">
+              {unit.name}
+            </h4>
+            <span
+              className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                unit.status.toLowerCase() === 'sold out'
+                  ? 'bg-red-500 text-white'
+                  : 'bg-[#dfc28c] text-[#020c1b]'
+              }`}
+            >
+              {unit.status}
+            </span>
+          </div>
+          <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+            {unit.description}
+          </p>
+        </div>
+
+        {/* Specs Icons */}
+        <div className="flex flex-wrap gap-4 text-xs text-white/50 border-t border-white/5 pt-4">
+          <div className="flex items-center gap-2">
+            <Bed size={14} className="text-[#dfc28c]" />
+            <span>{unit.bedrooms} Bedroom{unit.bedrooms > 1 ? 's' : ''}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Bath size={14} className="text-[#dfc28c]" />
+            <span>{unit.bathrooms} Bathroom{unit.bathrooms > 1 ? 's' : ''}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Maximize size={14} className="text-[#dfc28c]" />
+            <span>{unit.size}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Middle - Interactive Preview Area (40% width on desktop) */}
+      <div 
+        className="w-full lg:w-[40%] min-h-[220px] bg-zinc-950/40 rounded-2xl border border-white/5 overflow-hidden relative flex items-center justify-center group cursor-pointer"
+        onDoubleClick={() => onSelectFloorPlan(unit.floorPlanImage)}
+      >
+        {activeTab === 'video' && videoId && (
+          <div className="absolute inset-0 w-full h-full">
+            {isPlaying ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`}
+                title="Layout Video Tour"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full border-0"
+              />
+            ) : (
+              <div 
+                className="absolute inset-0 w-full h-full cursor-pointer"
+                onClick={() => setIsPlaying(true)}
+              >
+                <Image
+                  src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                  alt="Video Thumbnail"
+                  fill
+                  className="object-cover brightness-[0.7] group-hover:scale-105 transition-transform duration-500"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-[#dfc28c] hover:bg-white text-[#020c1b] flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300">
+                  <Play size={20} className="fill-current ml-1" />
+                </div>
+                <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white font-medium flex items-center gap-1.5 border border-white/10">
+                  <Play size={10} className="fill-current text-[#dfc28c]" />
+                  <span>Click to Play Video Tour</span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'floorplan' && (
+          <div 
+            className="absolute inset-0 w-full h-full bg-white p-4 flex items-center justify-center"
+            onClick={() => onSelectFloorPlan(unit.floorPlanImage)}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={unit.floorPlanImage}
+                alt="Floor Plan Preview"
+                fill
+                className="object-contain"
+                sizes="(max-w-1024px) 100vw, 40vw"
+              />
+            </div>
+            <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white font-medium flex items-center gap-1.5 border border-white/10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+              <Maximize size={10} className="text-[#dfc28c]" />
+              <span>Click to Zoom</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* 3. Right - Pricing & CTAs (25% width on desktop) */}
+      <div className="w-full lg:w-[25%] flex flex-col justify-between items-start lg:items-end gap-6 lg:border-l border-white/5 lg:pl-6">
+        <div className="flex flex-col lg:text-right">
+          <span className="text-[10px] uppercase tracking-wider text-white/40">Unit Pricing</span>
+          <span className="font-heading text-2xl font-bold text-[#dfc28c]">
+            {formatPrice(unit.price, currency)}
+          </span>
+        </div>
+
+        <div className="flex flex-col gap-2 w-full">
+          {videoUrl && (
+            <button
+              onClick={() => {
+                setActiveTab('video');
+                setIsPlaying(true);
+              }}
+              className={`w-full px-5 h-11 border rounded-full text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                activeTab === 'video'
+                  ? 'border-[#dfc28c] bg-[#dfc28c]/20 text-[#dfc28c]'
+                  : 'border-white/10 bg-white/5 hover:bg-white/10 text-white'
+              }`}
+            >
+              <Play size={14} className="fill-current" />
+              <span>Watch Video</span>
+            </button>
+          )}
+          <button
+            onClick={() => {
+              setActiveTab('floorplan');
+              setIsPlaying(false);
+            }}
+            className={`w-full px-5 h-11 border rounded-full text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              activeTab === 'floorplan'
+                ? 'border-[#dfc28c] bg-[#dfc28c]/20 text-[#dfc28c]'
+                : 'border-white/10 bg-white/5 hover:bg-white/10 text-white'
+            }`}
+          >
+            <Eye size={14} className={activeTab === 'floorplan' ? 'text-[#dfc28c]' : 'text-white/70'} />
+            <span>Floor Plan</span>
+          </button>
+          <a
+            href={unit.floorPlanImage}
+            download={unit.floorPlanImage.split('/').pop()}
+            className="w-full px-5 h-11 border border-white/10 hover:border-[#dfc28c] rounded-full text-xs font-semibold flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
+          >
+            <Download size={14} className="text-[#dfc28c]" />
+            <span>Download Plan</span>
+          </a>
+          <a
+            href={`https://wa.me/256786000112?text=Hello%20Edifice%20Properties%2C%20I%20am%20interested%20in%20${encodeURIComponent(propertyName)}%20-${encodeURIComponent(unit.name)}.%20Please%20send%20me%20pricing%20and%20payment%20details.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full px-5 h-11 bg-[#dfc28c] text-[#020c1b] hover:bg-white rounded-full text-xs font-bold flex items-center justify-center gap-2 transition-all"
+          >
+            <MessageSquare size={14} />
+            <span>Enquire</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

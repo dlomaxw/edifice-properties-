@@ -8,6 +8,7 @@ import { MessageSquare, Calendar, ChevronRight } from 'lucide-react';
 const heroSlides = [
   {
     image: '/assets/edifice/properties/property-card-horizon-residency.webp',
+    video: 'https://youtu.be/5SdItw9WkAE',
     title: 'Redefining Urban Living Through Premium Residences',
     subtitle: 'THE HORIZON RESIDENCY',
     location: 'Luthuli Avenue, Bugolobi',
@@ -16,6 +17,7 @@ const heroSlides = [
   },
   {
     image: '/assets/edifice/embassy-towers/embassy-towers-hero.webp',
+    video: 'https://youtu.be/cintZUdWXYY',
     title: 'Sophisticated High-Rise Suites in Kampala',
     subtitle: 'EMBASSY TOWERS',
     location: 'Kampala Road, Kampala',
@@ -24,6 +26,7 @@ const heroSlides = [
   },
   {
     image: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp',
+    video: 'https://youtu.be/n3lhXEN9_Hs',
     title: 'Modern Elegance Meets City Connectivity',
     subtitle: 'ELITE PALAZZO',
     location: 'Naguru, Kampala',
@@ -32,11 +35,21 @@ const heroSlides = [
   },
   {
     image: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png',
+    video: 'https://youtu.be/k3A4DfR2z1o',
     title: 'A Design-Led Sanctuary Close to Everything',
     subtitle: 'ATLANTIC HEIGHTS',
     location: 'Kampala',
     price: 'Starting from $97,000',
     link: '/properties/atlantic-apartments',
+  },
+  {
+    image: '/assets/edifice/signature%20residency/B.png',
+    video: 'https://youtu.be/Eact7djAeQc',
+    title: 'Experience modern living at Signature Residency, Kulambiro – comfort, convenience & great investment.',
+    subtitle: 'SIGNATURE RESIDENCY',
+    location: 'Kulambiro, Kampala',
+    price: 'Starting from UGX 180,000,000',
+    link: '/properties/signature-residency',
   },
 ];
 
@@ -47,9 +60,18 @@ interface HeroSliderProps {
 export default function HeroSlider({ properties = [] }: HeroSliderProps) {
   const featuredProperties = properties.filter((p) => p.featured);
   
+  // Extract YouTube ID helper
+  const getYouTubeId = (url: string) => {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
   const slides = featuredProperties.length > 0
     ? featuredProperties.map((p) => ({
         image: p.mainImage,
+        video: p.youtubeUrl,
         title: p.description,
         subtitle: p.name.toUpperCase(),
         location: p.location,
@@ -59,6 +81,7 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
     : heroSlides;
 
   const [current, setCurrent] = useState(0);
+  const [resetProgress, setResetProgress] = useState(0);
 
   useEffect(() => {
     if (slides.length <= 1) {
@@ -73,21 +96,40 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
 
   return (
     <div className="relative h-[100dvh] w-full overflow-hidden bg-[#020c1b]">
-      {/* Background Slideshow with Cinematic Ken Burns Effect */}
+      {/* Background Slideshow with Cinematic Ken Burns Effect or YouTube Video */}
       <AnimatePresence mode="popLayout">
         {slides[current] && (
           <motion.div
             key={current}
-            initial={{ opacity: 0, scale: 1.0 }}
-            animate={{ opacity: 1, scale: 1.15 }}
-            exit={{ opacity: 0, scale: 1.18 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{
-              opacity: { duration: 1.2, ease: "easeOut" },
-              scale: { duration: 7.0, ease: "easeOut" }
+              opacity: { duration: 1.2, ease: "easeOut" }
             }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${slides[current].image})` }}
+            className="absolute inset-0 w-full h-full bg-[#020c1b] overflow-hidden"
           >
+            {slides[current].video && getYouTubeId(slides[current].video) ? (
+              <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none scale-105">
+                <iframe
+                  src={`https://www.youtube.com/embed/${getYouTubeId(slides[current].video)}?autoplay=1&mute=1&loop=1&playlist=${getYouTubeId(slides[current].video)}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
+                  style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh' }}
+                />
+              </div>
+            ) : (
+              <motion.div
+                initial={{ scale: 1.0 }}
+                animate={{ scale: 1.15 }}
+                exit={{ scale: 1.18 }}
+                transition={{
+                  scale: { duration: 7.0, ease: "easeOut" }
+                }}
+                className="absolute inset-0 w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${slides[current].image})` }}
+              />
+            )}
             {/* Deep Navy Architectural Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#020c1b] via-[#0a192f]/50 to-[#020c1b]/70" />
           </motion.div>
@@ -199,12 +241,25 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`h-1.5 transition-all duration-300 rounded-full ${
-              idx === current ? 'w-8 bg-gold-500' : 'w-2 bg-white/40'
+            onClick={() => {
+              setCurrent(idx);
+              setResetProgress((prev) => prev + 1);
+            }}
+            className={`h-1.5 rounded-full relative overflow-hidden transition-all duration-300 ${
+              idx === current ? 'w-16 bg-white/20' : 'w-2 bg-white/40'
             }`}
             aria-label={`Go to slide ${idx + 1}`}
-          />
+          >
+            {idx === current && (
+              <motion.div
+                key={`progress-${idx}-${resetProgress}`}
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 6.5, ease: 'linear' }}
+                className="absolute inset-y-0 left-0 bg-gold-500"
+              />
+            )}
+          </button>
         ))}
       </div>
 

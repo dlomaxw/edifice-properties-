@@ -72,7 +72,7 @@ export default function PropertyScrollGallery({ propertyId, images }: PropertySc
             description: 'Spacious open-plan lounge concept looking out over the city with distinct dining partitions.',
           },
           {
-            url: '/assets/edifice/horizon-residency/horizon-residency-floorplan-diagram.jpg',
+            url: '/assets/edifice/horizon-residency/horizon-residency-aerial-top.jpg',
             category: 'floorplan',
             label: 'Development Block Diagram Layout',
             description: 'Detailed site map and blocks routing overview demonstrating secure neighborhood boundary lines.',
@@ -331,6 +331,81 @@ export default function PropertyScrollGallery({ propertyId, images }: PropertySc
           },
           {
             url: '/assets/edifice/urban-view-apartments/urban-view-3bhk-dimensions.jpg',
+            category: 'floorplan',
+            label: '3BHK Executive Penthouses Layout',
+            description: 'Upper floor planning detailing maids rooms, separate laundry utilities, and penthouse layouts.',
+          },
+        ];
+      case 'signature-residency':
+        return [
+          {
+            url: '/assets/edifice/signature%20residency/B.png',
+            category: 'exterior',
+            label: 'Facade Street Perspective',
+            description: 'Modern architectural exterior showcasing premium finishes and landscaped approach.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/C.png',
+            category: 'exterior',
+            label: 'Facade Corner View',
+            description: 'Detailed corner view displaying the modern balconies and architectural elevation.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/D.png',
+            category: 'exterior',
+            label: 'Facade Side View',
+            description: 'Zoomed perspective highlighting double-aspect balconies and premium color blocks.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/E.png',
+            category: 'interior',
+            label: 'Executive Living Room',
+            description: 'Bright and spacious living room layout featuring custom wall paneling, ceiling lighting details, and large view windows.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/F.png',
+            category: 'interior',
+            label: 'State-of-the-Art Kitchen',
+            description: 'High-end fitted kitchen layout featuring premium cabinetry, integrated appliances, and clean countertops.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/FOYER-01.png',
+            category: 'interior',
+            label: 'Grand Entrance Foyer',
+            description: 'Elegant entrance foyer and hallway paneling, welcoming residents with luxury detailing.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/G.png',
+            category: 'interior',
+            label: 'Master Bedroom Suite',
+            description: 'Bespoke master suite bedroom design detailing plush headboard panels, gold accents, and broad windows.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/H.png',
+            category: 'interior',
+            label: 'Modern Dining Area',
+            description: 'Sophisticated dining salon space seamlessly connected with the main lounge area.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/I.png',
+            category: 'interior',
+            label: 'Luxury Bathroom',
+            description: 'Stylishly finished bathroom layout with premium fixtures, wall-mounted vanities, and contemporary tiling.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/B.png',
+            category: 'floorplan',
+            label: '1BHK Dimensions & Sizing Sheets',
+            description: 'Technical drawing demonstrating room boundaries, structural doors, and plumbing pipes layout.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/C.png',
+            category: 'floorplan',
+            label: '2BHK Dimensions & Sizing Sheets',
+            description: 'Comprehensive 2-bedroom dimensions outlining balcony spaces and kitchen counter widths.',
+          },
+          {
+            url: '/assets/edifice/signature%20residency/D.png',
             category: 'floorplan',
             label: '3BHK Executive Penthouses Layout',
             description: 'Upper floor planning detailing maids rooms, separate laundry utilities, and penthouse layouts.',

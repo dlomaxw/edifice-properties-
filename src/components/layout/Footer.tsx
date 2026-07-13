@@ -10,6 +10,7 @@ const propertyLinks = [
   { name: 'Elite Palazzo Naguru', href: '/properties/elite-palazzo-naguru' },
   { name: 'Atlantic Apartments', href: '/properties/atlantic-apartments' },
   { name: 'Urban View Apartments', href: '/properties/urban-view-apartments' },
+  { name: 'Signature Residency', href: '/properties/signature-residency' },
 ];
 
 const quickLinks = [

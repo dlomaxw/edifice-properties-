@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Outfit } from 'next/font/google';
 import Script from 'next/script';
 import LogoPreloader from '@/components/layout/LogoPreloader';
+import RegisterInterestPopup from '@/components/common/RegisterInterestPopup';
 import './globals.css';
 
 const geistSans = Geist({
@@ -73,6 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         <LogoPreloader />
         {children}
+        <RegisterInterestPopup />
       </body>
     </html>
   );

@@ -18,6 +18,7 @@ const propertiesList: PropertyItem[] = [
   { name: 'Elite Palazzo Naguru', href: '/properties/elite-palazzo-naguru', image: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp' },
   { name: 'Atlantic Apartments', href: '/properties/atlantic-apartments', image: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png' },
   { name: 'Urban View Apartments', href: '/properties/urban-view-apartments', image: '/assets/edifice/urban-view-apartments/urban-view-exterior-drone.png' },
+  { name: 'Signature Residency', href: '/properties/signature-residency', image: '/assets/edifice/signature%20residency/B.png' },
 ];
 
 export default function Navbar() {

@@ -191,7 +191,7 @@ export default async function HomePage() {
               <div className="group flex flex-col md:flex-row gap-6 lg:gap-8 items-center md:items-start bg-white p-6 md:p-8 rounded-3xl border border-[#dfc28c]/30 hover:border-[#dfc28c] shadow-lg hover:shadow-xl transition-all duration-300 w-full">
                 <div className="relative w-48 h-56 rounded-2xl overflow-hidden shrink-0 bg-[#0a192f] shadow-md border-2 border-[#dfc28c]/30">
                   <img
-                    src={settings.cofounder2_image || "/assets/edifice/home/home-cofounder-abbas.jpg"}
+                    src={settings.cofounder2_image || "/assets/edifice/home/home-cofounder-mau.jpg"}
                     alt={settings.cofounder2_name || "Mr. Mou Shaojiu"}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.05]"
                   />

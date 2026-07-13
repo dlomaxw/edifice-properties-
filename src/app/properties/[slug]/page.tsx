@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import StickyCTAs from '@/components/layout/StickyCTAs';
 import UnitMatrix from '@/components/property/UnitMatrix';
 import PropertyScrollGallery from '@/components/property/PropertyScrollGallery';
+import PropertyGalleries from '@/components/property/PropertyGalleries';
 import VideoModal from '@/components/home/VideoModal';
 import HomeForm from '@/components/home/HomeForm';
 import { MapPin, Maximize, Bed, Bath, Sparkles, MessageSquare, Calendar, ChevronRight } from 'lucide-react';
@@ -72,6 +73,20 @@ export default async function PropertyDetailPage({ params }: Props) {
     'Rooftop Terrace Gazebo',
     'High-Speed Passenger Lift',
   ];
+
+  // Specific amenities for signature-residency
+  const signatureAmenities = [
+    'Children’s Play Area',
+    'Fully Equipped Gym',
+    'Steam & Sauna',
+    'Generator Backup',
+    'Society Office',
+    'Secure Garbage Area',
+    'Premium Euro Aluminium Windows',
+    'Terrace Sitting & Gardens',
+  ];
+
+  const amenities = property.id === 'signature-residency' ? signatureAmenities : defaultAmenities;
 
   const formatPrice = (price: number, curr: string) => {
     return new Intl.NumberFormat('en-US', {
@@ -236,6 +251,26 @@ export default async function PropertyDetailPage({ params }: Props) {
                   </div>
                 </div>
               )}
+              {property.id === 'signature-residency' && (
+                <div className="bg-gradient-to-br from-[#0a192f] to-[#020c1b] text-white p-8 rounded-3xl border border-[#dfc28c]/20 shadow-xl relative overflow-hidden">
+                  <div className="absolute right-0 bottom-0 w-64 h-64 bg-[#dfc28c]/5 rounded-full blur-[80px]" />
+                  <span className="text-xs uppercase tracking-widest text-[#dfc28c] font-bold">Project Spotlight</span>
+                  <h3 className="font-heading text-2xl font-bold mt-2">Signature Kulambiro Modernity</h3>
+                  <p className="text-sm text-white/70 leading-relaxed mt-4">
+                    Signature Residency at Kulambiro is an address designed for families and investors who value modernity, comfort, and high yields. Featuring three blocks across 10 floors with dedicated lifts, premium European aluminium windows, and lush rooftop terrace gardens.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                      <span className="text-xs text-white/50 block">Architecture</span>
+                      <span className="text-sm font-semibold text-[#dfc28c] mt-1 block">3 Blocks, 10 Floors</span>
+                    </div>
+                    <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                      <span className="text-xs text-white/50 block">Key Highlight</span>
+                      <span className="text-sm font-semibold text-[#dfc28c] mt-1 block">Terrace Gardens & Gym</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Amenities Grid */}
@@ -244,7 +279,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                 Resort-Style Amenities
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {defaultAmenities.map((amenity) => (
+                {amenities.map((amenity) => (
                   <div
                     key={amenity}
                     className="flex items-center gap-3 bg-white p-4 rounded-xl border border-black/5 shadow-sm"
@@ -267,6 +302,9 @@ export default async function PropertyDetailPage({ params }: Props) {
 
             {/* Scroll-Linked Property Gallery */}
             <PropertyScrollGallery propertyId={property.id} images={property.images} />
+
+            {/* Dedicated Interior and Floor Plan Gallery Sections */}
+            <PropertyGalleries images={property.images} />
 
             {/* Video Modal Section */}
             {property.youtubeUrl && (

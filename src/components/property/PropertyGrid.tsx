@@ -72,7 +72,10 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
         p.description.toLowerCase().includes(searchTerm.toLowerCase());
 
       const matchesLocation = selectedLocation === 'All' || p.location.toLowerCase().includes(selectedLocation.toLowerCase());
-      const matchesStatus = selectedStatus === 'All' || p.status.toLowerCase() === selectedStatus.toLowerCase();
+      const matchesStatus =
+        selectedStatus === 'All' ||
+        (selectedStatus.toLowerCase() === 'available' && p.status.toLowerCase() !== 'sold out') ||
+        (selectedStatus.toLowerCase() === 'sold out' && p.status.toLowerCase() === 'sold out');
       const matchesBhk = selectedBhk === 'All' || p.bedrooms.toLowerCase().includes(selectedBhk.toLowerCase());
 
       return matchesSearch && matchesLocation && matchesStatus && matchesBhk;

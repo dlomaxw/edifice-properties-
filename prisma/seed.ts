@@ -347,7 +347,7 @@ async function main() {
       featured: true,
       seoTitle: 'Horizon Residency Bugolobi | Luxury Apartments for Sale in Kampala',
       seoDescription: 'Discover Horizon Residency by Edifice Properties on Luthuli Avenue, Bugolobi. Offers modern 1BHK, 2BHK, and 3BHK apartments starting at $92,000 with premium amenities.',
-      orderIndex: 1,
+      orderIndex: 2,
     },
   });
 
@@ -422,7 +422,7 @@ async function main() {
       featured: true,
       seoTitle: 'Embassy Towers Kampala | High-Rise Luxury Living',
       seoDescription: 'Invest in Embassy Towers Kampala. Offering premium 1, 2, and 3 bedroom apartments starting at $68,000. Prime location, 24/7 security, and modern layouts.',
-      orderIndex: 2,
+      orderIndex: 3,
     },
   });
 
@@ -475,7 +475,7 @@ async function main() {
       fullDescription: 'Located around the crossroads of Naguru/Ntinda II road, Elite Palazzo offers connectivity and road access to Kampala within a 4 to 5 km radius. The project features elegant apartments, large terraces, and premium locally and internationally sourced finishes.',
       startingPrice: 120000,
       currency: 'USD',
-      status: 'Available',
+      status: 'Sold out',
       type: 'Apartment',
       bedrooms: '2BHK, 3BHK',
       bathrooms: '2-3',
@@ -486,7 +486,7 @@ async function main() {
       featured: true,
       seoTitle: 'Elite Palazzo Naguru | Luxury Real Estate Uganda',
       seoDescription: 'Elite Palazzo in Naguru, Kampala offers premium 2BHK and 3BHK luxury apartments starting at $120,000. Enjoy high-elevation views and prime city connectivity.',
-      orderIndex: 3,
+      orderIndex: 4,
     },
   });
 
@@ -528,7 +528,7 @@ async function main() {
       fullDescription: 'Atlantic Heights offers stunning modern layouts, prioritizing natural light, ventilation, and functional design. Built with premium materials, this development provides outstanding long-term rental yields and is ideal for diaspora and home buyers alike.',
       startingPrice: 97000,
       currency: 'USD',
-      status: 'Available',
+      status: 'Only 1 Unit Left',
       type: 'Apartment',
       bedrooms: '2BHK, 3BHK',
       bathrooms: '2-3',
@@ -539,7 +539,7 @@ async function main() {
       featured: false,
       seoTitle: 'Atlantic Apartments | Modern Residences in Kampala',
       seoDescription: 'Atlantic Apartments (Atlantic Heights) Kampala offers 2BHK and 3BHK luxury suites starting at $97,000. Convenient access to shopping, schools, and medical facilities.',
-      orderIndex: 4,
+      orderIndex: 5,
     },
   });
 
@@ -592,7 +592,7 @@ async function main() {
       featured: false,
       seoTitle: 'Urban View Apartments Kulambiro | Sold Out Premium Residences',
       seoDescription: 'Urban View Apartments in Kulambiro, Kampala. Fully sold out high-rise residential community built by Edifice Properties for professionals and families.',
-      orderIndex: 5,
+      orderIndex: 6,
     },
   });
 
@@ -618,7 +618,7 @@ async function main() {
       featured: true,
       seoTitle: 'Signature Residency Kulambiro | Premium Apartments by Edifice',
       seoDescription: 'Experience modern living at Signature Residency, Kulambiro. Launching Phase 1 premium 1BHK, 2BHK, & 3BHK suites with world-class amenities.',
-      orderIndex: 6,
+      orderIndex: 1,
     },
   });
 

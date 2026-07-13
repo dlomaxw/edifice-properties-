@@ -100,7 +100,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-48 h-14 md:w-56 md:h-16 transition-all duration-300">
+            <div className="relative w-56 h-16 md:w-68 md:h-20 transition-all duration-300">
               <img 
                 src={settings.site_logo_url || "/assets/edifice/logo/edifice-logo-main.svg"} 
                 alt="Edifice Properties Logo" 

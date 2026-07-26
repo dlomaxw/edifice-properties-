@@ -152,16 +152,28 @@ export default function PropertyGalleries({ images = [] }: PropertyGalleriesProp
                   </p>
                   
                   {/* Download Button */}
-                  <a
-                    href={floorplanImages[activePlanIndex].url}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 px-6 py-4 bg-gold-500 hover:bg-[#0a192f] hover:text-white text-[#020c1b] rounded-full transition-all duration-200 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
-                  >
-                    <Download size={14} />
-                    <span>Download Blueprint</span>
-                  </a>
+                  {(() => {
+                    let downloadUrl = floorplanImages[activePlanIndex].url;
+                    if (downloadUrl.includes('signature_residency_cut_iso_1bhk')) {
+                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%201BHK.pdf';
+                    } else if (downloadUrl.includes('signature_residency_cut_iso_2bhk')) {
+                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%202BHK.pdf';
+                    } else if (downloadUrl.includes('signature_residency_cut_iso_3bhk')) {
+                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%203BHK.pdf';
+                    }
+                    return (
+                      <a
+                        href={downloadUrl}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 px-6 py-4 bg-gold-500 hover:bg-[#0a192f] hover:text-white text-[#020c1b] rounded-full transition-all duration-200 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                      >
+                        <Download size={14} />
+                        <span>Download Blueprint</span>
+                      </a>
+                    );
+                  })()}
                 </div>
               )}
             </div>

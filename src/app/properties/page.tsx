@@ -6,9 +6,20 @@ import PropertyGrid from '@/components/property/PropertyGrid';
 import ScrollReveal from '@/components/layout/ScrollReveal';
 
 export const metadata = {
-  title: 'Our Developments | Premium Properties Kampala',
+  title: 'New Apartments and Condominiums for Sale in Kampala, Uganda | Edifice Properties',
   description:
-    'Browse our signature residential portfolio in Kampala. Premium apartments for sale in Bugolobi, Naguru, Muyenga, and Kulambiro. Explore starting prices, amenities, and floor plans.',
+    'Browse our signature residential development portfolio in Kampala, Uganda. Premium luxury apartments for sale in Bugolobi, Naguru, Kololo, and Kulambiro. Explore starting prices, amenities, and floor plans.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/properties',
+  },
+  openGraph: {
+    title: 'New Apartments and Condominiums for Sale in Kampala, Uganda | Edifice Properties',
+    description:
+      'Browse our signature residential development portfolio in Kampala, Uganda. Premium luxury apartments for sale in Bugolobi, Naguru, Kololo, and Kulambiro.',
+    url: 'https://edificepropertiesug.com/properties',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export const dynamic = 'force-dynamic';

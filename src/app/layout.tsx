@@ -61,6 +61,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MS3L3W73');`}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'RealEstateAgent',
+              'name': 'Edifice Properties Uganda',
+              'url': 'https://edificepropertiesug.com',
+              'logo': 'https://edificepropertiesug.com/assets/edifice/logo/edifice-logo-main.svg',
+              'image': 'https://edificepropertiesug.com/assets/edifice/signature%20residency/B.png',
+              'description': 'Leading design-led real estate developer in Kampala, Uganda. Specializing in luxury apartments and condominiums in Bugolobi, Naguru, Kololo, and Kulambiro.',
+              'telephone': '+256786000112',
+              'email': 'sales@edificepropertiesug.com',
+              'priceRange': '$68,000 - $330,000',
+              'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': 'Kololo',
+                'addressLocality': 'Kampala',
+                'addressCountry': 'UG'
+              },
+              'geo': {
+                '@type': 'GeoCoordinates',
+                'latitude': 0.33,
+                'longitude': 32.58
+              },
+              'sameAs': [
+                'https://facebook.com/edificepropertiesug',
+                'https://instagram.com/edificepropertiesug',
+                'https://youtube.com/@edificepropertiesug'
+              ]
+            })
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-white text-charcoal-800 selection:bg-gold-500 selection:text-charcoal-800">
         {/* Google Tag Manager (noscript) */}

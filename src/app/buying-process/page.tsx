@@ -8,8 +8,18 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'The Buying Process | Edifice Properties Uganda',
-  description: 'Your step-by-step guide to purchasing a premium residence with Edifice Properties. Explore our 7-step buying process, flexible financing options, and legal details.',
+  title: 'How to Buy an Apartment in Uganda | Edifice Properties',
+  description: 'Your step-by-step guide to purchasing a premium condominium residence with Edifice Properties in Uganda. Explore our 7-step buying process, flexible payment plans, and legal title verification.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/buying-process',
+  },
+  openGraph: {
+    title: 'How to Buy an Apartment in Uganda | Edifice Properties',
+    description: 'Step-by-step guide to purchasing a premium condominium apartment in Kampala, Uganda. Explore our 7-step buying process, payment plans, and legal guidance.',
+    url: 'https://edificepropertiesug.com/buying-process',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export default function BuyingProcessPage() {

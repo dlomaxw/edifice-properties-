@@ -6,8 +6,18 @@ import ScrollReveal from '@/components/layout/ScrollReveal';
 import { Sparkles, Sprout, Eye, HeartHandshake, Award, Coffee, Building2, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 export const metadata = {
-  title: 'About Us | Edifice Properties Uganda',
-  description: 'Learn about Edifice Properties, Uganda’s design-led real estate developer. Founded in 2022 with a mission to craft premium residential spaces in Kampala.',
+  title: 'Property Developer Uganda | Edifice Properties',
+  description: 'Learn about Edifice Properties, Uganda’s design-led luxury real estate developer. Crafting premium residential apartments, condominiums, and investment properties in Kampala.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/about',
+  },
+  openGraph: {
+    title: 'Property Developer Uganda | Edifice Properties',
+    description: 'Learn about Edifice Properties, Uganda’s design-led luxury real estate developer. Crafting premium residential apartments, condominiums, and investment properties in Kampala.',
+    url: 'https://edificepropertiesug.com/about',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export const dynamic = 'force-dynamic';

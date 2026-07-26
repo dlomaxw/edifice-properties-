@@ -154,12 +154,12 @@ export default function PropertyGalleries({ images = [] }: PropertyGalleriesProp
                   {/* Download Button */}
                   {(() => {
                     let downloadUrl = floorplanImages[activePlanIndex].url;
-                    if (downloadUrl.includes('signature_residency_cut_iso_1bhk')) {
-                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%201BHK.pdf';
-                    } else if (downloadUrl.includes('signature_residency_cut_iso_2bhk')) {
-                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%202BHK.pdf';
-                    } else if (downloadUrl.includes('signature_residency_cut_iso_3bhk')) {
-                      downloadUrl = '/assets/edifice/signature%20residency/dimensions%26sizing%20sheets/SIGNATURE%20RESIDENCY_CUT%20ISO%203BHK.pdf';
+                    if (downloadUrl.includes('signature-residency-cut-iso-1bhk')) {
+                      downloadUrl = '/assets/edifice/signature-residency/dimensions-sizing-sheets/signature-residency-cut-iso-1bhk.pdf';
+                    } else if (downloadUrl.includes('signature-residency-cut-iso-2bhk')) {
+                      downloadUrl = '/assets/edifice/signature-residency/dimensions-sizing-sheets/signature-residency-cut-iso-2bhk.pdf';
+                    } else if (downloadUrl.includes('signature-residency-cut-iso-3bhk')) {
+                      downloadUrl = '/assets/edifice/signature-residency/dimensions-sizing-sheets/signature-residency-cut-iso-3bhk.pdf';
                     }
                     return (
                       <a

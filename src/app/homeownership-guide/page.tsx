@@ -7,8 +7,18 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Homeownership Guide | Edifice Properties Uganda',
-  description: 'Essential information, maintenance tips, and answers to common queries for Edifice Properties homeowners in Kampala.',
+  title: 'Homeownership & Condominium Guide',
+  description: 'Essential information, maintenance tips, title verification guidance, and answers for Edifice Properties homeowners in Kampala, Uganda.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/homeownership-guide',
+  },
+  openGraph: {
+    title: 'Homeownership & Condominium Guide | Edifice Properties Uganda',
+    description: 'Essential information, maintenance tips, and answers for homeowners in Kampala.',
+    url: 'https://edificepropertiesug.com/homeownership-guide',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export default function HomeownershipGuidePage() {

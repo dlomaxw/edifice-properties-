@@ -12,13 +12,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Buy Property in Uganda From Abroad | Diaspora Investment Guide',
+  title: 'Buy Property in Uganda From Abroad | Diaspora Guide',
   description: 'Dedicated property investment guide for Ugandans living abroad in UK, USA, Canada, UAE, and South Africa. Buy apartments safely in Kampala with verified title deeds, virtual tours, and remote payment plans.',
   alternates: {
     canonical: 'https://edificepropertiesug.com/diaspora',
   },
   openGraph: {
-    title: 'Buy Property in Uganda From Abroad | Diaspora Investment Guide',
+    title: 'Buy Property in Uganda From Abroad | Diaspora Investment Guide | Edifice Properties Uganda',
     description: 'Invest safely in Kampala apartments from overseas. Verified condominium titles, virtual tours, and flexible diaspora payment plans.',
     url: 'https://edificepropertiesug.com/diaspora',
     siteName: 'Edifice Properties',

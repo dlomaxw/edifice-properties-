@@ -8,13 +8,13 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'How to Buy an Apartment in Uganda | Edifice Properties',
+  title: 'How to Buy an Apartment in Uganda',
   description: 'Your step-by-step guide to purchasing a premium condominium residence with Edifice Properties in Uganda. Explore our 7-step buying process, flexible payment plans, and legal title verification.',
   alternates: {
     canonical: 'https://edificepropertiesug.com/buying-process',
   },
   openGraph: {
-    title: 'How to Buy an Apartment in Uganda | Edifice Properties',
+    title: 'How to Buy an Apartment in Uganda | Edifice Properties Uganda',
     description: 'Step-by-step guide to purchasing a premium condominium apartment in Kampala, Uganda. Explore our 7-step buying process, payment plans, and legal guidance.',
     url: 'https://edificepropertiesug.com/buying-process',
     siteName: 'Edifice Properties',

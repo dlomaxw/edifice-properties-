@@ -6,8 +6,18 @@ import HomeForm from '@/components/home/HomeForm';
 import { Phone, Mail, MapPin, Clock, ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Contact Us | Edifice Properties Uganda',
+  title: 'Contact Us & Book Site Visit',
   description: 'Reach out to Edifice Properties Uganda. Visit our office at Plot 8 Kanjokya Street in Kololo, Kampala, or contact our sales consultants directly.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/contact',
+  },
+  openGraph: {
+    title: 'Contact Us & Book Site Visit | Edifice Properties Uganda',
+    description: 'Reach out to Edifice Properties Uganda in Kololo, Kampala.',
+    url: 'https://edificepropertiesug.com/contact',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export const dynamic = 'force-dynamic';

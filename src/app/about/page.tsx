@@ -6,13 +6,13 @@ import ScrollReveal from '@/components/layout/ScrollReveal';
 import { Sparkles, Sprout, Eye, HeartHandshake, Award, Coffee, Building2, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 export const metadata = {
-  title: 'Property Developer Uganda | Edifice Properties',
+  title: 'Property Developer Uganda',
   description: 'Learn about Edifice Properties, Uganda’s design-led luxury real estate developer. Crafting premium residential apartments, condominiums, and investment properties in Kampala.',
   alternates: {
     canonical: 'https://edificepropertiesug.com/about',
   },
   openGraph: {
-    title: 'Property Developer Uganda | Edifice Properties',
+    title: 'Property Developer Uganda | Edifice Properties Uganda',
     description: 'Learn about Edifice Properties, Uganda’s design-led luxury real estate developer. Crafting premium residential apartments, condominiums, and investment properties in Kampala.',
     url: 'https://edificepropertiesug.com/about',
     siteName: 'Edifice Properties',

@@ -7,8 +7,18 @@ import Link from 'next/link';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 
 export const metadata = {
-  title: 'Blog & News | Edifice Properties Uganda',
+  title: 'Kampala Real Estate Insights & Buying Guides',
   description: 'Stay updated with construction progress, real estate investment advice, and homeownership tips in Kampala, Uganda.',
+  alternates: {
+    canonical: 'https://edificepropertiesug.com/blog',
+  },
+  openGraph: {
+    title: 'Kampala Real Estate Insights & Buying Guides | Edifice Properties Uganda',
+    description: 'Real estate investment advice, market reports, and construction progress in Kampala.',
+    url: 'https://edificepropertiesug.com/blog',
+    siteName: 'Edifice Properties',
+    type: 'website',
+  },
 };
 
 export const dynamic = 'force-dynamic';

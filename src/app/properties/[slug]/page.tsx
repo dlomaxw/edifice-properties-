@@ -28,9 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: property.seoTitle,
     description: property.seoDescription,
+    alternates: {
+      canonical: `https://edificepropertiesug.com/properties/${property.slug}`,
+    },
     openGraph: {
       title: property.seoTitle,
       description: property.seoDescription,
+      url: `https://edificepropertiesug.com/properties/${property.slug}`,
+      siteName: 'Edifice Properties',
       images: [{ url: property.mainImage }],
     },
   };

@@ -101,12 +101,21 @@ export default async function PropertyDetailPage({ params }: Props) {
     }).format(price);
   };
 
+  const h1Headings: Record<string, string> = {
+    'horizon-residency': 'Luxury Apartments for Sale in Bugolobi, Kampala',
+    'signature-residency': '1, 2 and 3 Bedroom Apartments for Sale in Kulambiro',
+    'embassy-towers': 'High-Rise Apartments for Sale on Kampala Road, Kampala',
+    'elite-palazzo-naguru': 'Elite Palazzo Naguru – Completed Luxury Residency',
+    'atlantic-apartments': 'Luxury Apartments for Sale in Bukoto, Kampala',
+    'urban-view-apartments': 'Urban View Apartments – Completed Residence in Kulambiro',
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <main className="bg-[#020c1b] min-full text-white font-sans selection:bg-[#dfc28c] selection:text-[#020c1b]">
       <Navbar />
 
-      {/* Property Hero Cover */}
-      <section className="relative h-[65vh] w-full bg-zinc-900 border-b border-white/5 overflow-hidden">
+      {/* Hero Banner with Cinematic Parallax */}
+      <section className="relative h-[75vh] min-h-[550px] flex items-end pb-12 overflow-hidden border-b border-white/10">
         {/* Background Image with Cinematic Zoom */}
         <div
           className="absolute inset-0 bg-cover bg-center animate-page-load-zoom"
@@ -125,8 +134,11 @@ export default async function PropertyDetailPage({ params }: Props) {
                   {property.location}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight">
+              <span className="text-xs md:text-sm font-bold text-[#dfc28c] uppercase tracking-widest block font-heading mt-1">
                 {property.name}
+              </span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-white leading-tight">
+                {h1Headings[property.id] || property.name}
               </h1>
             </div>
 
@@ -404,6 +416,6 @@ export default async function PropertyDetailPage({ params }: Props) {
 
       <Footer />
       <StickyCTAs />
-    </div>
+    </main>
   );
 }

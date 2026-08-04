@@ -108,6 +108,7 @@ export default async function BlogDetailPage({ params }: Props) {
                 src={post.featuredImage}
                 alt={post.title}
                 fill
+                unoptimized={post.featuredImage.startsWith('http')}
                 className="object-cover"
                 priority
               />
@@ -161,6 +162,7 @@ export default async function BlogDetailPage({ params }: Props) {
                       src={rec.featuredImage}
                       alt={rec.title}
                       fill
+                      unoptimized={rec.featuredImage.startsWith('http')}
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>

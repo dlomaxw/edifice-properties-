@@ -80,6 +80,7 @@ export default async function BlogPage() {
                       src={post.featuredImage}
                       alt={post.title}
                       fill
+                      unoptimized={post.featuredImage.startsWith('http')}
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute top-4 left-4 px-3 py-1 bg-[#020c1b] text-[#dfc28c] text-[9px] font-bold uppercase tracking-wider rounded-full border border-white/10 shadow-lg">

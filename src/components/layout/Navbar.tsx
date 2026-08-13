@@ -84,6 +84,7 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Buying Process', href: '/buying-process' },
     { name: 'Diaspora Investment', href: '/diaspora' },
+    { name: 'CSR Impact', href: '/csr' },
     { name: 'Homeownership Guide', href: '/homeownership-guide' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },

@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function CSRPage() {
-  // Video URL slot - can be replaced with YouTube video embed link
-  const videoEmbedUrl = 'https://www.youtube.com/embed/5SdItw9WkAE?autoplay=0&rel=0';
+  // YouTube Video Embed URL for Kitende Outreach
+  const videoEmbedUrl = 'https://www.youtube.com/embed/aiAedj9bpbk?autoplay=0&rel=0';
 
   return (
     <main className="bg-[#020c1b] min-h-screen text-white font-sans selection:bg-[#dfc28c] selection:text-[#020c1b]">
@@ -65,8 +65,8 @@ export default function CSRPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Video Player Showcase */}
-            <div className="lg:col-span-7">
-              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-zinc-950 border border-black/10 group">
+            <div className="lg:col-span-6 flex flex-col items-center">
+              <div className="relative w-full max-w-[400px] aspect-[9/16] max-h-[580px] rounded-3xl overflow-hidden shadow-2xl bg-zinc-950 border border-black/10 group">
                 <iframe
                   src={videoEmbedUrl}
                   title="Kitende Charity Outreach - Edifice Properties Uganda"
@@ -81,7 +81,7 @@ export default function CSRPage() {
             </div>
 
             {/* Story Content */}
-            <div className="lg:col-span-5 flex flex-col gap-6">
+            <div className="lg:col-span-6 flex flex-col gap-6">
               <div className="bg-zinc-50 border border-zinc-200/80 p-8 rounded-3xl shadow-sm space-y-4">
                 <p className="text-sm md:text-base text-zinc-700 leading-relaxed font-medium">
                   At Edifice Properties, we believe that building a better future goes beyond developing exceptional properties — it also means giving back to the communities around us.

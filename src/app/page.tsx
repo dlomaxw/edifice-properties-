@@ -7,7 +7,7 @@ import PropertySlider from '@/components/home/PropertySlider';
 import VideoModal from '@/components/home/VideoModal';
 import HomeForm from '@/components/home/HomeForm';
 import ScrollReveal from '@/components/layout/ScrollReveal';
-import { Shield, Sparkles, Sprout, HeartHandshake, Eye, Phone, Mail, ChevronRight } from 'lucide-react';
+import { Shield, Sparkles, Sprout, HeartHandshake, Eye, Phone, Mail, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -366,6 +366,66 @@ export default async function HomePage() {
                 </ScrollReveal>
               </>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Impact & CSR Section */}
+      <section className="py-24 bg-[#020c1b] text-white border-t border-white/5 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#dfc28c]/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          {/* CSR Info & Copy */}
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dfc28c]/15 text-[#dfc28c] text-[10px] font-bold uppercase tracking-widest border border-[#dfc28c]/30 self-start">
+              <Heart size={14} className="fill-[#dfc28c]" />
+              <span>Community Impact & CSR</span>
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-white tracking-tight leading-tight">
+              Kitende Charity Outreach
+            </h2>
+
+            <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
+              At Edifice Properties, we believe that building a better future goes beyond developing exceptional properties — it also means giving back to the communities around us.
+            </p>
+
+            <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">
+              As part of our <strong className="text-white">Kitende Charity Outreach</strong>, the entire Edifice Properties team came together to spend meaningful time with students and provide meals as a gesture of care, support and community.
+            </p>
+
+            {/* Quote Banner */}
+            <div className="bg-[#0a192f] border border-[#dfc28c]/30 p-5 rounded-2xl shadow-md">
+              <p className="text-sm md:text-base font-heading font-bold text-[#dfc28c] leading-snug">
+                “Together, we build more than properties. We build hope, relationships and stronger communities.”
+              </p>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href="/csr"
+                className="px-6 py-3.5 bg-[#dfc28c] hover:bg-[#cfae74] text-[#020c1b] font-bold rounded-full text-xs uppercase tracking-wider transition-all shadow-lg inline-flex items-center gap-2"
+              >
+                <span>Explore Our CSR Initiatives</span>
+                <ChevronRight size={14} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Video Player */}
+          <div className="lg:col-span-6 flex flex-col items-center">
+            <div className="relative w-full max-w-[360px] sm:max-w-[400px] aspect-[9/16] max-h-[560px] rounded-3xl overflow-hidden shadow-2xl bg-zinc-950 border border-white/10">
+              <iframe
+                src="https://www.youtube.com/embed/aiAedj9bpbk?autoplay=0&rel=0"
+                title="Kitende Charity Outreach - Edifice Properties Uganda"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <span className="text-xs text-white/50 mt-3 font-semibold">
+              Watch: Kitende Charity Outreach Highlights
+            </span>
           </div>
         </div>
       </section>

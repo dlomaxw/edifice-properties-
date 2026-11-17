@@ -64,6 +64,14 @@ export async function PUT(
   }
 }
 
+// PATCH: the admin dashboard edits units with PATCH; forward to PUT
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  return PUT(request, { params });
+}
+
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

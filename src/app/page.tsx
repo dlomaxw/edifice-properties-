@@ -7,6 +7,7 @@ import PropertySlider from '@/components/home/PropertySlider';
 import VideoModal from '@/components/home/VideoModal';
 import HomeForm from '@/components/home/HomeForm';
 import ScrollReveal from '@/components/layout/ScrollReveal';
+import { resolveHeroSlides, resolveHeroStats } from '@/lib/heroSlides';
 import { Shield, Sparkles, Sprout, HeartHandshake, Eye, Phone, Mail, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -41,7 +42,7 @@ export default async function HomePage() {
       <Navbar />
 
       {/* Hero Section */}
-      <HeroSlider properties={properties} />
+      <HeroSlider slides={resolveHeroSlides(settings, properties)} stats={resolveHeroStats(settings)} />
 
       {/* Exclusive Offer Banner */}
       <section className="bg-[#020c1b] text-white py-6 border-y border-white/5 shadow-inner">

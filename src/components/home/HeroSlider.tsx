@@ -4,82 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Calendar, ChevronRight } from 'lucide-react';
-
-const heroSlides = [
-  {
-    image: '/assets/edifice/properties/property-card-horizon-residency.webp',
-    video: 'https://youtu.be/5SdItw9WkAE',
-    title: 'Redefining Urban Living Through Premium Residences',
-    subtitle: 'THE HORIZON RESIDENCY',
-    location: 'Luthuli Avenue, Bugolobi',
-    price: 'Starting from $92,000',
-    link: '/properties/horizon-residency',
-  },
-  {
-    image: '/assets/edifice/embassy-towers/embassy-towers-hero.webp',
-    video: 'https://youtu.be/cintZUdWXYY',
-    title: 'Sophisticated High-Rise Suites in Kampala',
-    subtitle: 'EMBASSY TOWERS',
-    location: 'Kampala Road, Kampala',
-    price: 'Starting from $68,000',
-    link: '/properties/embassy-towers',
-  },
-  {
-    image: '/assets/edifice/elite-palazzo/elite-palazzo-hero.webp',
-    video: 'https://youtu.be/n3lhXEN9_Hs',
-    title: 'Modern Elegance Meets City Connectivity',
-    subtitle: 'ELITE PALAZZO',
-    location: 'Naguru, Kampala',
-    price: 'Starting from $120,000',
-    link: '/properties/elite-palazzo-naguru',
-  },
-  {
-    image: '/assets/edifice/atlantic-apartments/atlantic-apartments-exterior-01.png',
-    video: 'https://youtu.be/k3A4DfR2z1o',
-    title: 'A Design-Led Sanctuary Close to Everything',
-    subtitle: 'ATLANTIC HEIGHTS',
-    location: 'Kampala',
-    price: 'Starting from $97,000',
-    link: '/properties/atlantic-apartments',
-  },
-  {
-    image: '/assets/edifice/signature%20residency/B.png',
-    video: 'https://youtu.be/Eact7djAeQc',
-    title: 'Experience modern living at Signature Residency, Kulambiro – comfort, convenience & great investment.',
-    subtitle: 'SIGNATURE RESIDENCY',
-    location: 'Kulambiro, Kampala',
-    price: 'Starting from UGX 180,000,000',
-    link: '/properties/signature-residency',
-  },
-];
+import { HeroSlide, HeroStat, DEFAULT_HERO_STATS, getYouTubeId } from '@/lib/heroSlides';
 
 interface HeroSliderProps {
-  properties?: any[];
+  slides: HeroSlide[];
+  stats?: HeroStat[];
 }
 
-export default function HeroSlider({ properties = [] }: HeroSliderProps) {
-  const featuredProperties = properties.filter((p) => p.featured);
-  
-  // Extract YouTube ID helper
-  const getYouTubeId = (url: string) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return match && match[2].length === 11 ? match[2] : null;
-  };
-
-  const slides = featuredProperties.length > 0
-    ? featuredProperties.map((p) => ({
-        image: p.mainImage,
-        video: p.youtubeUrl,
-        title: p.description,
-        subtitle: p.name.toUpperCase(),
-        location: p.location,
-        price: `Starting from ${p.currency === 'USD' ? '$' : ''}${p.startingPrice.toLocaleString()}${p.currency !== 'USD' ? ' ' + p.currency : ''}`,
-        link: `/properties/${p.slug}`,
-      }))
-    : heroSlides;
-
+export default function HeroSlider({ slides, stats = DEFAULT_HERO_STATS }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
   const [resetProgress, setResetProgress] = useState(0);
 
@@ -110,7 +42,10 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
             className="absolute inset-0 w-full h-full bg-[#020c1b] overflow-hidden"
           >
             {slides[current].video && getYouTubeId(slides[current].video) ? (
-              <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none scale-105">
+              <div
+                className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none scale-105 bg-cover bg-center"
+                style={slides[current].image ? { backgroundImage: `url(${slides[current].image})` } : undefined}
+              >
                 <iframe
                   src={`https://www.youtube.com/embed/${getYouTubeId(slides[current].video)}?autoplay=1&mute=1&loop=1&playlist=${getYouTubeId(slides[current].video)}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -118,6 +53,18 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
                   style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh' }}
                 />
               </div>
+            ) : slides[current].video ? (
+              // Uploaded video file (mp4/webm); the slide image is the poster while it loads
+              <video
+                key={slides[current].video}
+                src={slides[current].video}
+                poster={slides[current].image || undefined}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              />
             ) : (
               <motion.div
                 initial={{ scale: 1.0 }}
@@ -221,18 +168,17 @@ export default function HeroSlider({ properties = [] }: HeroSliderProps) {
       {/* Floating Counter / Highlight Overlay */}
       <div className="absolute right-6 bottom-24 lg:right-24 lg:bottom-16 hidden md:block">
         <div className="flex gap-12 bg-[#020c1b]/70 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/10 shadow-2xl">
-          <div className="text-center border-r border-white/10 pr-12">
-            <span className="block font-heading text-3xl font-bold text-white">10+</span>
-            <span className="text-xs text-white/50 uppercase tracking-widest mt-1 block">Years Experience</span>
-          </div>
-          <div className="text-center border-r border-white/10 pr-12">
-            <span className="block font-heading text-3xl font-bold text-gold-500">50+</span>
-            <span className="text-xs text-white/50 uppercase tracking-widest mt-1 block">Happy Clients</span>
-          </div>
-          <div className="text-center">
-            <span className="block font-heading text-3xl font-bold text-white">100%</span>
-            <span className="text-xs text-white/50 uppercase tracking-widest mt-1 block">Clear Titles</span>
-          </div>
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className={`text-center ${idx < stats.length - 1 ? 'border-r border-white/10 pr-12' : ''}`}
+            >
+              <span className={`block font-heading text-3xl font-bold ${idx % 2 === 1 ? 'text-gold-500' : 'text-white'}`}>
+                {stat.value}
+              </span>
+              <span className="text-xs text-white/50 uppercase tracking-widest mt-1 block">{stat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
 

@@ -5,9 +5,14 @@ import { useSearchParams } from 'next/navigation';
 import { 
   Settings, Save, CheckCircle, AlertCircle, Loader2, 
   Phone, Mail, MapPin, Play, Globe, MessageSquare, 
-  Sparkles, Users, Award, BookOpen 
+  Sparkles, Users, Award, BookOpen, Film 
 } from 'lucide-react';
 import ImageUploader from '@/components/admin/ImageUploader';
+import HeroSlidesEditor from '@/components/admin/HeroSlidesEditor';
+import {
+  HeroSlide, HeroStat, HERO_SLIDES_KEY, HERO_STATS_KEY,
+  resolveHeroSlides, resolveHeroStats, slidesFromProperties, DEFAULT_HERO_SLIDES,
+} from '@/lib/heroSlides';
 
 function SettingsContent() {
   const searchParams = useSearchParams();
@@ -20,7 +25,7 @@ function SettingsContent() {
   const [activeTab, setActiveTab] = useState('branding');
 
   useEffect(() => {
-    if (tabParam && ['branding', 'contacts', 'homepage', 'leadership', 'testimonials', 'about'].includes(tabParam)) {
+    if (tabParam && ['branding', 'hero', 'contacts', 'homepage', 'leadership', 'testimonials', 'about'].includes(tabParam)) {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
@@ -29,6 +34,13 @@ function SettingsContent() {
   // 1. Branding & Global Settings
   const [siteLogoUrl, setSiteLogoUrl] = useState('');
   const [mapIframeUrl, setMapIframeUrl] = useState('');
+
+  // Hero slider: 'auto' = homepage builds slides from featured properties,
+  // 'manual' = homepage uses the slides saved here.
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+  const [heroStats, setHeroStats] = useState<HeroStat[]>([]);
+  const [heroMode, setHeroMode] = useState<'auto' | 'manual'>('auto');
+  const [autoHeroSlides, setAutoHeroSlides] = useState<HeroSlide[]>(DEFAULT_HERO_SLIDES);
 
   // 2. Telephone & WhatsApp Channels
   const [phonePrimary, setPhonePrimary] = useState('');
@@ -133,12 +145,24 @@ function SettingsContent() {
   useEffect(() => {
     async function loadSettings() {
       try {
-        const res = await fetch('/api/settings');
+        const [res, propsRes] = await Promise.all([
+          fetch('/api/settings'),
+          fetch('/api/properties').catch(() => null),
+        ]);
         if (!res.ok) throw new Error('Failed to load settings');
         const json = await res.json();
+        const propsJson = propsRes && propsRes.ok ? await propsRes.json() : null;
+        const properties = propsJson?.data || [];
         
         if (json.success && json.data) {
           const s = json.data;
+          // Hero slider (prefilled with whatever the homepage shows right now)
+          const featuredSlides = slidesFromProperties(properties);
+          setAutoHeroSlides(featuredSlides.length > 0 ? featuredSlides : DEFAULT_HERO_SLIDES);
+          setHeroSlides(resolveHeroSlides(s, properties));
+          setHeroStats(resolveHeroStats(s));
+          setHeroMode(s[HERO_SLIDES_KEY] ? 'manual' : 'auto');
+
           // Branding
           setSiteLogoUrl(s.site_logo_url || '');
           setMapIframeUrl(s.map_iframe_url || '');
@@ -345,6 +369,8 @@ function SettingsContent() {
       about_global_desc2: aboutGlobalDesc2,
       about_global_cta_title: aboutGlobalCtaTitle,
       about_global_cta_desc: aboutGlobalCtaDesc,
+      [HERO_SLIDES_KEY]: heroMode === 'manual' ? JSON.stringify(heroSlides) : '',
+      [HERO_STATS_KEY]: JSON.stringify(heroStats),
     };
 
     try {
@@ -370,6 +396,7 @@ function SettingsContent() {
 
   const tabs = [
     { id: 'branding', label: 'Branding & General', icon: Globe },
+    { id: 'hero', label: 'Hero Slider', icon: Film },
     { id: 'contacts', label: 'Contacts Desk', icon: Phone },
     { id: 'homepage', label: 'Homepage Content', icon: BookOpen },
     { id: 'leadership', label: 'Leadership & Video', icon: Users },
@@ -427,6 +454,24 @@ function SettingsContent() {
           {/* Form Content Area */}
           <form onSubmit={handleSubmit} className="flex-1 w-full bg-zinc-900 border border-white/5 rounded-3xl p-8 flex flex-col gap-8 shadow-md">
             
+            {/* TAB: HOMEPAGE HERO SLIDER */}
+            {activeTab === 'hero' && (
+              <HeroSlidesEditor
+                slides={heroSlides}
+                onSlidesChange={(next) => {
+                  setHeroSlides(next);
+                  setHeroMode('manual');
+                }}
+                stats={heroStats}
+                onStatsChange={setHeroStats}
+                usingSavedSlides={heroMode === 'manual'}
+                onResetToAutomatic={() => {
+                  setHeroSlides(autoHeroSlides);
+                  setHeroMode('auto');
+                }}
+              />
+            )}
+
             {/* TAB 1: BRANDING & GENERAL */}
             {activeTab === 'branding' && (
               <div className="flex flex-col gap-6">
